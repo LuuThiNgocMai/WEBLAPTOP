@@ -68,7 +68,23 @@
                                     <td>@item.TenSP</td>
                                     <td>@item.Gia</td>
                                     <td>@item.Mota</td>
-                                    <td><img src="~/Images/Product_images/@item.Images_url" alt="Ảnh" width="70" /></td>
+                                    @*<td><img src="~/Images/Product_images/@item.Images_url" alt="Ảnh" width="70" /></td>*@
+                                    <td>
+                                    @if (!string.IsNullOrEmpty(item.Images_url) && item.Images_url != "default.jpg")
+                                    {
+                                        var arrImages = item.Images_url.Split(';');
+
+                                        <img src="~/Images/Product_images/@arrImages[0]" width="70" height="70" style="object-fit: cover; border: 1px solid #ccc;" />
+
+                                        if (arrImages.Length > 1)
+                                        {
+                                            <span class="badge bg-secondary">+@(arrImages.Length - 1)</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/Product_images/default.jpg" width="70" />
+                                    }
                                     <td>@(item.DANHMUC != null ? item.DANHMUC.TenDM : "Không có danh mục")</td>
                                     <td>@item.SoLuong</td>
                                     <td>
