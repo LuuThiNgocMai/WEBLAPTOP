@@ -1,0 +1,28 @@
+{
+  "ma_tc": "REG_14",
+  "ten_test_case": "Kiểm tra link “Trở về trang chủ”",
+  "tong_so_buoc": 1,
+  "so_buoc_pass": 1,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:41:39.172797",
+  "thoi_gian_ket_thuc": "2026-04-19T00:41:40.437289",
+  "tong_thoi_gian_chay": "1.26s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_14",
+      "ten_test_case": "Kiểm tra link “Trở về trang chủ”",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Click text “Trở về trang chủ”",
+      "module": "Navigation check",
+      "action": "Click text “Trở về trang chủ”",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:39.436403",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:39.436403"
+    }
+  ]
+}

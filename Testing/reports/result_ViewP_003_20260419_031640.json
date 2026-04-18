@@ -1,0 +1,41 @@
+{
+  "ma_tc": "ViewP_003",
+  "ten_test_case": "Kiểm tra hiển thị đầy đủ thông tin sản phẩm",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 1,
+  "so_buoc_fail": 1,
+  "trang_thai_cuoi": "FAILED",
+  "thoi_gian_bat_dau": "2026-04-19T03:16:38.714380",
+  "thoi_gian_ket_thuc": "2026-04-19T03:16:40.213895",
+  "tong_thoi_gian_chay": "1.50s",
+  "thong_bao_loi_cuoi_cung": "Action 'click_vao_mot_san_pham_co_thong_tin_đay_đu' not supported in Product module",
+  "screenshot_loi_cuoi_cung": "Testing\\screenshots\\fail_ViewP_003_step2.png",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "ViewP_003",
+      "ten_test_case": "Kiểm tra hiển thị đầy đủ thông tin sản phẩm",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Click vào menu “Sản phẩm”",
+      "module": "Kiểm tra UI & Performance",
+      "action": "Click vào menu “Sản phẩm”",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T03:16:38.840997",
+      "thoi_gian_ket_thuc": "2026-04-19T03:16:39.023038"
+    },
+    {
+      "ma_tc": "ViewP_003",
+      "ten_test_case": "Kiểm tra hiển thị đầy đủ thông tin sản phẩm",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Click vào một sản phẩm có thông tin đầy đủ",
+      "module": "Kiểm tra UI & Performance",
+      "action": "Click vào một sản phẩm có thông tin đầy đủ",
+      "trang_thai": "FAIL",
+      "thong_bao_loi": "Action 'click_vao_mot_san_pham_co_thong_tin_đay_đu' not supported in Product module",
+      "duong_dan_anh_chup": "Testing\\screenshots\\fail_ViewP_003_step2.png",
+      "thoi_gian_bat_dau": "2026-04-19T03:16:40.023755",
+      "thoi_gian_ket_thuc": "2026-04-19T03:16:40.023755"
+    }
+  ]
+}

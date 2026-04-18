@@ -1,0 +1,30 @@
+[
+  {
+    "stt": 1,
+    "ma_tc": "TC001",
+    "ten_test_case": "Đăng nhập thành công",
+    "mo_ta": "Kiểm tra đăng nhập với tài khoản hợp lệ",
+    "dieu_kien_tien_quyet": "Người dùng đã có tài khoản",
+    "cac_buoc_thuc_hien_goc": "1. Truy cập trang login\n2. Nhập user/pass\n3. Nhấn Login",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Truy cập trang login"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập user/pass"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Nhấn Login"
+      }
+    ],
+    "du_lieu_test_goc": "user: admin, pass: 123",
+    "ket_qua_mong_doi": "Đăng nhập thành công, chuyển hướng đến Dashboard",
+    "ghi_chu_tu_dong_hoa": "module=login",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {},
+    "trang_thai_review": "NEW"
+  }
+]

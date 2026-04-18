@@ -1,0 +1,32 @@
+﻿Mã TC,Tên Test Case,Tổng Bước,Pass,Fail,Trạng thái,Thời gian chạy,Lỗi cuối,Screenshot
+TC01,Đăng nhập thành công,1,0,1,FAILED,6.31s,"Module login execution error: Message: unknown error: net::ERR_NAME_NOT_RESOLVED
+  (Session info: chrome=147.0.7727.57)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff621ac0245+146d5]
+	chromedriver!GetHandleVerifier [0x7ff621ac02b0+14740]
+	chromedriver!(No symbol) [0x7ff62182d7cd]
+	chromedriver!(No symbol) [0x7ff62182a304]
+	chromedriver!(No symbol) [0x7ff62181a271]
+	chromedriver!(No symbol) [0x7ff62181c15f]
+	chromedriver!(No symbol) [0x7ff62181a813]
+	chromedriver!(No symbol) [0x7ff621819fdb]
+	chromedriver!(No symbol) [0x7ff621819c91]
+	chromedriver!(No symbol) [0x7ff6218178c1]
+	chromedriver!(No symbol) [0x7ff621818022]
+	chromedriver!(No symbol) [0x7ff621831a86]
+	chromedriver!(No symbol) [0x7ff6218d5674]
+	chromedriver!(No symbol) [0x7ff6218aff6a]
+	chromedriver!(No symbol) [0x7ff6218d4818]
+	chromedriver!(No symbol) [0x7ff621879018]
+	chromedriver!(No symbol) [0x7ff621879f03]
+	chromedriver!GetHandleVerifier [0x7ff621dd58f9+329d89]
+	chromedriver!GetHandleVerifier [0x7ff621dcfe46+3242d6]
+	chromedriver!GetHandleVerifier [0x7ff621df30b2+347542]
+	chromedriver!GetHandleVerifier [0x7ff621add3d5+31865]
+	chromedriver!GetHandleVerifier [0x7ff621ae600c+3a49c]
+	chromedriver!GetHandleVerifier [0x7ff621ac9634+1dac4]
+	chromedriver!GetHandleVerifier [0x7ff621ac97e6+1dc76]
+	chromedriver!GetHandleVerifier [0x7ff621aae2f7+2787]
+	KERNEL32!BaseThreadInitThunk [0x7ffa1ce07614+14]
+	ntdll!RtlUserThreadStart [0x7ffa1eb626a1+21]
+",Testing\screenshots\fail_TC01_step1.png

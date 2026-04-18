@@ -1,0 +1,41 @@
+{
+  "ma_tc": "REG_16",
+  "ten_test_case": "Kiểm tra mật khẩu bị che (ẩn)",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 2,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:02:17.332015",
+  "thoi_gian_ket_thuc": "2026-04-19T00:02:20.265533",
+  "tong_thoi_gian_chay": "2.93s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_16",
+      "ten_test_case": "Kiểm tra mật khẩu bị che (ẩn)",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Nhập mật khẩu",
+      "module": "Security - password masking",
+      "action": "Nhập mật khẩu",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:18.148563",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:18.148563"
+    },
+    {
+      "ma_tc": "REG_16",
+      "ten_test_case": "Kiểm tra mật khẩu bị che (ẩn)",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Quan sát trường mật khẩu",
+      "module": "Security - password masking",
+      "action": "Quan sát trường mật khẩu",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:18.148563",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:18.148563"
+    }
+  ]
+}

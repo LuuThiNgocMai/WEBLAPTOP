@@ -1,0 +1,54 @@
+{
+  "ma_tc": "SearchP_005",
+  "ten_test_case": "Tìm kiếm sản phẩm với từ khóa rỗng",
+  "tong_so_buoc": 3,
+  "so_buoc_pass": 3,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "THÀNH CÔNG",
+  "thoi_gian_bat_dau": "2026-04-19T05:22:06.652733",
+  "thoi_gian_ket_thuc": "2026-04-19T05:22:10.060675",
+  "tong_thoi_gian_chay": "3.41s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "SearchP_005",
+      "ten_test_case": "Tìm kiếm sản phẩm với từ khóa rỗng",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Click nút “Tìm kiếm”",
+      "module": "Test case biên",
+      "action": "Click nút “Tìm kiếm”",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:22:06.727622",
+      "thoi_gian_ket_thuc": "2026-04-19T05:22:06.824001"
+    },
+    {
+      "ma_tc": "SearchP_005",
+      "ten_test_case": "Tìm kiếm sản phẩm với từ khóa rỗng",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Để trống ô tìm kiếm",
+      "module": "Test case biên",
+      "action": "Để trống ô tìm kiếm",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:22:07.824715",
+      "thoi_gian_ket_thuc": "2026-04-19T05:22:07.892293"
+    },
+    {
+      "ma_tc": "SearchP_005",
+      "ten_test_case": "Tìm kiếm sản phẩm với từ khóa rỗng",
+      "so_buoc": 3,
+      "noi_dung_buoc": "Nhấn tìm kiếm",
+      "module": "Test case biên",
+      "action": "Nhấn tìm kiếm",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:22:08.893884",
+      "thoi_gian_ket_thuc": "2026-04-19T05:22:09.060232"
+    }
+  ]
+}

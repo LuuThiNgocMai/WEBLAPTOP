@@ -1,0 +1,41 @@
+{
+  "ma_tc": "ViewP_002",
+  "ten_test_case": "Xem chi tiết sản phẩm khi không kết nối được CSDL",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 1,
+  "so_buoc_fail": 1,
+  "trang_thai_cuoi": "FAILED",
+  "thoi_gian_bat_dau": "2026-04-19T01:52:20.989930",
+  "thoi_gian_ket_thuc": "2026-04-19T01:52:22.648093",
+  "tong_thoi_gian_chay": "1.66s",
+  "thong_bao_loi_cuoi_cung": "Action 'click_vao_menu_“san_pham”' not supported in Product module",
+  "screenshot_loi_cuoi_cung": "Testing\\screenshots\\fail_ViewP_002_step2.png",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "ViewP_002",
+      "ten_test_case": "Xem chi tiết sản phẩm khi không kết nối được CSDL",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Truy cập trang chủ",
+      "module": "Luồng lỗi - Nên tự động hóa",
+      "action": "Truy cập trang chủ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T01:52:21.127345",
+      "thoi_gian_ket_thuc": "2026-04-19T01:52:21.128452"
+    },
+    {
+      "ma_tc": "ViewP_002",
+      "ten_test_case": "Xem chi tiết sản phẩm khi không kết nối được CSDL",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Click vào menu “Sản phẩm”",
+      "module": "Luồng lỗi - Nên tự động hóa",
+      "action": "Click vào menu “Sản phẩm”",
+      "trang_thai": "FAIL",
+      "thong_bao_loi": "Action 'click_vao_menu_“san_pham”' not supported in Product module",
+      "duong_dan_anh_chup": "Testing\\screenshots\\fail_ViewP_002_step2.png",
+      "thoi_gian_bat_dau": "2026-04-19T01:52:22.128998",
+      "thoi_gian_ket_thuc": "2026-04-19T01:52:22.128998"
+    }
+  ]
+}

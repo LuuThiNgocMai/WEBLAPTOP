@@ -1,0 +1,33 @@
+from selenium.webdriver.common.by import By
+from core.base_page import BasePage
+from config import URL_CONFIG
+
+class LoginPage(BasePage):
+    """Page Object for Login Page of the laptop store."""
+    
+    # Locators (Updated for local MVC site)
+    EMAIL_INPUT = (By.ID, "username")
+    PASSWORD_INPUT = (By.ID, "password")
+    LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type='submit']")
+    LOGIN_SUCCESS_INDICATOR = (By.CSS_SELECTOR, ".bi-person-circle")
+
+    def navigate_to_login(self, env_config=None):
+        url = URL_CONFIG.get("login", "https://localhost:44396/Login")
+        
+        if env_config and env_config.get('target_url'):
+            url = env_config.get('target_url')
+
+        final_url = self.get_formatted_url(url, env_config.get('auth') if env_config else None)
+        self.driver.get(final_url)
+
+    def enter_email(self, email):
+        self.enter_text(self.EMAIL_INPUT, email)
+
+    def enter_password(self, password):
+        self.enter_text(self.PASSWORD_INPUT, password)
+
+    def click_login(self):
+        self.click(self.LOGIN_BUTTON)
+
+    def is_logged_in(self):
+        return self.is_visible(self.LOGIN_SUCCESS_INDICATOR)

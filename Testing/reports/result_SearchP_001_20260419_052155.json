@@ -1,0 +1,67 @@
+{
+  "ma_tc": "SearchP_001",
+  "ten_test_case": "Tìm kiếm sản phẩm thành công theo tên",
+  "tong_so_buoc": 4,
+  "so_buoc_pass": 4,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "THÀNH CÔNG",
+  "thoi_gian_bat_dau": "2026-04-19T05:21:50.341791",
+  "thoi_gian_ket_thuc": "2026-04-19T05:21:55.616225",
+  "tong_thoi_gian_chay": "5.27s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "SearchP_001",
+      "ten_test_case": "Tìm kiếm sản phẩm thành công theo tên",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Truy cập trang chủ",
+      "module": "Luồng chính - Nên tự động hóa",
+      "action": "Truy cập trang chủ",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:21:51.317736",
+      "thoi_gian_ket_thuc": "2026-04-19T05:21:51.317736"
+    },
+    {
+      "ma_tc": "SearchP_001",
+      "ten_test_case": "Tìm kiếm sản phẩm thành công theo tên",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Click vào nút “Tìm kiếm”",
+      "module": "Luồng chính - Nên tự động hóa",
+      "action": "Click vào nút “Tìm kiếm”",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:21:52.319627",
+      "thoi_gian_ket_thuc": "2026-04-19T05:21:52.427781"
+    },
+    {
+      "ma_tc": "SearchP_001",
+      "ten_test_case": "Tìm kiếm sản phẩm thành công theo tên",
+      "so_buoc": 3,
+      "noi_dung_buoc": "Nhập tên sản phẩm vào ô tìm kiếm",
+      "module": "Luồng chính - Nên tự động hóa",
+      "action": "Nhập tên sản phẩm vào ô tìm kiếm",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:21:53.428753",
+      "thoi_gian_ket_thuc": "2026-04-19T05:21:53.552436"
+    },
+    {
+      "ma_tc": "SearchP_001",
+      "ten_test_case": "Tìm kiếm sản phẩm thành công theo tên",
+      "so_buoc": 4,
+      "noi_dung_buoc": "Nhấn Enter hoặc click nút tìm kiếm",
+      "module": "Luồng chính - Nên tự động hóa",
+      "action": "Nhấn Enter hoặc click nút tìm kiếm",
+      "trang_thai": "ĐẠT",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T05:21:54.552738",
+      "thoi_gian_ket_thuc": "2026-04-19T05:21:54.615025"
+    }
+  ]
+}

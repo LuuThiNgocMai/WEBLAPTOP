@@ -1,0 +1,229 @@
+﻿Mã TC,Tên Test Case,Tổng Bước,Pass,Fail,Trạng thái,Thời gian chạy,Lỗi cuối,Screenshot
+TC01,Đăng nhập thành công,1,0,1,FAILED,6.31s,"Module login execution error: Message: unknown error: net::ERR_NAME_NOT_RESOLVED
+  (Session info: chrome=147.0.7727.57)
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff621ac0245+146d5]
+	chromedriver!GetHandleVerifier [0x7ff621ac02b0+14740]
+	chromedriver!(No symbol) [0x7ff62182d7cd]
+	chromedriver!(No symbol) [0x7ff62182a304]
+	chromedriver!(No symbol) [0x7ff62181a271]
+	chromedriver!(No symbol) [0x7ff62181c15f]
+	chromedriver!(No symbol) [0x7ff62181a813]
+	chromedriver!(No symbol) [0x7ff621819fdb]
+	chromedriver!(No symbol) [0x7ff621819c91]
+	chromedriver!(No symbol) [0x7ff6218178c1]
+	chromedriver!(No symbol) [0x7ff621818022]
+	chromedriver!(No symbol) [0x7ff621831a86]
+	chromedriver!(No symbol) [0x7ff6218d5674]
+	chromedriver!(No symbol) [0x7ff6218aff6a]
+	chromedriver!(No symbol) [0x7ff6218d4818]
+	chromedriver!(No symbol) [0x7ff621879018]
+	chromedriver!(No symbol) [0x7ff621879f03]
+	chromedriver!GetHandleVerifier [0x7ff621dd58f9+329d89]
+	chromedriver!GetHandleVerifier [0x7ff621dcfe46+3242d6]
+	chromedriver!GetHandleVerifier [0x7ff621df30b2+347542]
+	chromedriver!GetHandleVerifier [0x7ff621add3d5+31865]
+	chromedriver!GetHandleVerifier [0x7ff621ae600c+3a49c]
+	chromedriver!GetHandleVerifier [0x7ff621ac9634+1dac4]
+	chromedriver!GetHandleVerifier [0x7ff621ac97e6+1dc76]
+	chromedriver!GetHandleVerifier [0x7ff621aae2f7+2787]
+	KERNEL32!BaseThreadInitThunk [0x7ffa1ce07614+14]
+	ntdll!RtlUserThreadStart [0x7ffa1eb626a1+21]
+",Testing\screenshots\fail_TC01_step1.png
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,3.48s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,3,3,0,PASSED,3.09s,,
+REG_03,Đăng ký thất bại - Email đã tồn tại,3,3,0,PASSED,3.68s,,
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,2,2,0,PASSED,2.94s,,
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,3,3,0,PASSED,2.88s,,
+REG_06,Đăng ký thất bại - Để trống Họ và tên,3,3,0,PASSED,2.89s,,
+REG_07,Đăng ký thất bại - Để trống Email,3,3,0,PASSED,2.91s,,
+REG_08,Đăng ký thất bại - Email không đúng định dạng,3,3,0,PASSED,2.89s,,
+REG_09,Đăng ký thất bại - Số điện thoại không đúng định dạng,2,2,0,PASSED,2.92s,,
+REG_10,Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai),3,3,0,PASSED,2.93s,,
+REG_11,Đăng ký thất bại - Không chọn Giới tính,3,3,0,PASSED,3.05s,,
+REG_12,Kiểm tra độ dài tối thiểu & tối đa các trường,2,2,0,PASSED,2.87s,,
+REG_13,Kiểm tra nút “Đăng nhập ngay”,1,1,0,PASSED,2.95s,,
+REG_14,Kiểm tra link “Trở về trang chủ”,1,1,0,PASSED,2.87s,,
+REG_15,Kiểm tra hiển thị Placeholder của các trường,1,1,0,PASSED,2.92s,,
+REG_16,Kiểm tra mật khẩu bị che (ẩn),2,2,0,PASSED,2.94s,,
+REG_17,Kiểm tra chọn ngày sinh từ Date Picker,2,2,0,PASSED,2.92s,,
+REG_18,Đăng ký với dữ liệu chứa ký tự đặc biệt,2,2,0,PASSED,2.93s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,5.19s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,3,3,0,PASSED,5.92s,,
+REG_03,Đăng ký thất bại - Email đã tồn tại,3,3,0,PASSED,5.87s,,
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,2,2,0,PASSED,4.93s,,
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,3,3,0,PASSED,5.89s,,
+REG_06,Đăng ký thất bại - Để trống Họ và tên,3,3,0,PASSED,5.89s,,
+REG_07,Đăng ký thất bại - Để trống Email,3,3,0,PASSED,6.00s,,
+REG_08,Đăng ký thất bại - Email không đúng định dạng,3,3,0,PASSED,5.99s,,
+REG_09,Đăng ký thất bại - Số điện thoại không đúng định dạng,2,2,0,PASSED,4.88s,,
+REG_10,Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai),3,3,0,PASSED,5.93s,,
+REG_11,Đăng ký thất bại - Không chọn Giới tính,3,3,0,PASSED,5.94s,,
+REG_12,Kiểm tra độ dài tối thiểu & tối đa các trường,2,2,0,PASSED,4.86s,,
+REG_13,Kiểm tra nút “Đăng nhập ngay”,1,1,0,PASSED,3.86s,,
+REG_14,Kiểm tra link “Trở về trang chủ”,1,1,0,PASSED,3.98s,,
+REG_15,Kiểm tra hiển thị Placeholder của các trường,1,1,0,PASSED,3.86s,,
+REG_16,Kiểm tra mật khẩu bị che (ẩn),2,2,0,PASSED,5.00s,,
+REG_17,Kiểm tra chọn ngày sinh từ Date Picker,2,2,0,PASSED,4.97s,,
+REG_18,Đăng ký với dữ liệu chứa ký tự đặc biệt,2,2,0,PASSED,4.87s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,4.97s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,3,3,0,PASSED,5.97s,,
+REG_03,Đăng ký thất bại - Email đã tồn tại,3,3,0,PASSED,6.03s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,2.87s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,5.43s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,3,3,0,PASSED,3.88s,,
+REG_03,Đăng ký thất bại - Email đã tồn tại,3,3,0,PASSED,3.86s,,
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,2,2,0,PASSED,2.83s,,
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,3,3,0,PASSED,3.96s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,2.98s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,3,3,0,PASSED,4.11s,,
+REG_03,Đăng ký thất bại - Email đã tồn tại,3,3,0,PASSED,4.59s,,
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,2,2,0,PASSED,3.01s,,
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,3,3,0,PASSED,10.10s,,
+REG_01,Unknown,0,0,0,FAILED,0.33s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,1,0,1,FAILED,0.41s,Action 'nhap_ten_đang_nhap_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_02_step1.png
+REG_03,Đăng ký thất bại - Email đã tồn tại,1,0,1,FAILED,0.19s,Action 'nhap_email_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_03_step1.png
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,1,0,1,FAILED,0.20s,Action 'đe_trong_ten_đang_nhap_2._nhap_đay_đu_cac_truong_khac' not supported in Login module,Testing\screenshots\fail_REG_04_step1.png
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,1,0,1,FAILED,0.22s,Action 'đe_trong_mat_khau' not supported in Login module,Testing\screenshots\fail_REG_05_step1.png
+REG_06,Đăng ký thất bại - Để trống Họ và tên,3,3,0,PASSED,3.11s,,
+REG_07,Unknown,0,0,0,FAILED,0.01s,,
+REG_08,Unknown,0,0,0,FAILED,0.01s,,
+REG_09,Unknown,0,0,0,FAILED,0.01s,,
+REG_10,Unknown,0,0,0,FAILED,0.01s,,
+REG_11,Unknown,0,0,0,FAILED,0.01s,,
+REG_12,Unknown,0,0,0,FAILED,0.01s,,
+REG_13,Unknown,0,0,0,FAILED,0.01s,,
+REG_14,Unknown,0,0,0,FAILED,0.00s,,
+REG_15,Unknown,0,0,0,FAILED,0.01s,,
+REG_16,Unknown,0,0,0,FAILED,0.00s,,
+REG_17,Unknown,0,0,0,FAILED,0.01s,,
+REG_18,Unknown,0,0,0,FAILED,0.00s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,4.56s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,1,0,1,FAILED,0.75s,Action 'nhap_ten_đang_nhap_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_02_step1.png
+REG_03,Đăng ký thất bại - Email đã tồn tại,1,0,1,FAILED,0.65s,Action 'nhap_email_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_03_step1.png
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,1,0,1,FAILED,0.68s,Action 'đe_trong_ten_đang_nhap_2._nhap_đay_đu_cac_truong_khac' not supported in Login module,Testing\screenshots\fail_REG_04_step1.png
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,1,0,1,FAILED,0.76s,Action 'đe_trong_mat_khau' not supported in Login module,Testing\screenshots\fail_REG_05_step1.png
+REG_06,Đăng ký thất bại - Để trống Họ và tên,3,3,0,PASSED,3.22s,,
+REG_07,Đăng ký thất bại - Để trống Email,1,0,1,FAILED,0.62s,Action 'đe_trong_email' not supported in Login module,Testing\screenshots\fail_REG_07_step1.png
+REG_08,Đăng ký thất bại - Email không đúng định dạng,1,0,1,FAILED,0.62s,Action 'nhap_email_sai_đinh_dang' not supported in Login module,Testing\screenshots\fail_REG_08_step1.png
+REG_09,Đăng ký thất bại - Số điện thoại không đúng định dạng,2,2,0,PASSED,2.16s,,
+REG_10,Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai),3,3,0,PASSED,3.46s,,
+REG_11,Đăng ký thất bại - Không chọn Giới tính,3,3,0,PASSED,3.20s,,
+REG_12,Kiểm tra độ dài tối thiểu & tối đa các trường,2,2,0,PASSED,2.20s,,
+REG_13,Kiểm tra nút “Đăng nhập ngay”,1,0,1,FAILED,0.66s,Action 'click_text_“đa_co_tai_khoan?_đang_nhap_ngay”' not supported in Login module,Testing\screenshots\fail_REG_13_step1.png
+REG_14,Kiểm tra link “Trở về trang chủ”,1,1,0,PASSED,1.27s,,
+REG_15,Kiểm tra hiển thị Placeholder của các trường,1,1,0,PASSED,1.19s,,
+REG_16,Kiểm tra mật khẩu bị che (ẩn),1,0,1,FAILED,0.68s,Missing password in test data,Testing\screenshots\fail_REG_16_step1.png
+REG_17,Kiểm tra chọn ngày sinh từ Date Picker,2,2,0,PASSED,2.18s,,
+REG_18,Đăng ký với dữ liệu chứa ký tự đặc biệt,2,2,0,PASSED,2.19s,,
+REG_01,Đăng ký thành công với đầy đủ thông tin hợp lệ,2,2,0,PASSED,3.39s,,
+REG_02,Đăng ký thất bại - Tên đăng nhập đã tồn tại,1,0,1,FAILED,0.96s,Action 'nhap_ten_đang_nhap_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_02_step1.png
+REG_03,Đăng ký thất bại - Email đã tồn tại,1,0,1,FAILED,0.92s,Action 'nhap_email_đa_ton_tai' not supported in Login module,Testing\screenshots\fail_REG_03_step1.png
+REG_04,Đăng ký thất bại - Để trống Tên đăng nhập,1,0,1,FAILED,0.83s,Action 'đe_trong_ten_đang_nhap_2._nhap_đay_đu_cac_truong_khac' not supported in Login module,Testing\screenshots\fail_REG_04_step1.png
+REG_05,Đăng ký thất bại - Để trống Mật khẩu,1,0,1,FAILED,0.85s,Action 'đe_trong_mat_khau' not supported in Login module,Testing\screenshots\fail_REG_05_step1.png
+REG_06,Đăng ký thất bại - Để trống Họ và tên,3,3,0,PASSED,3.37s,,
+REG_07,Đăng ký thất bại - Để trống Email,1,0,1,FAILED,0.75s,Action 'đe_trong_email' not supported in Login module,Testing\screenshots\fail_REG_07_step1.png
+REG_08,Đăng ký thất bại - Email không đúng định dạng,1,0,1,FAILED,0.87s,Action 'nhap_email_sai_đinh_dang' not supported in Login module,Testing\screenshots\fail_REG_08_step1.png
+REG_09,Đăng ký thất bại - Số điện thoại không đúng định dạng,2,2,0,PASSED,2.46s,,
+REG_10,Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai),3,3,0,PASSED,4.07s,,
+REG_11,Unknown,0,0,0,FAILED,0.01s,,
+REG_12,Unknown,0,0,0,FAILED,0.01s,,
+REG_13,Unknown,0,0,0,FAILED,0.01s,,
+REG_14,Unknown,0,0,0,FAILED,0.01s,,
+REG_15,Unknown,0,0,0,FAILED,0.02s,,
+REG_16,Unknown,0,0,0,FAILED,0.02s,,
+REG_17,Unknown,0,0,0,FAILED,0.01s,,
+REG_18,Unknown,0,0,0,FAILED,0.01s,,
+Se_001,Kiểm tra tìm kiểm sản phầm thành công,2,1,1,FAILED,2.23s,Action 'nhap_ten_san_pham_vao_o_tim_kiem' not supported in Search module,Testing\screenshots\fail_Se_001_step2.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),2,1,1,FAILED,2.18s,Action 'click_vao_menu_“san_pham”' not supported in Product module,Testing\screenshots\fail_ViewP_001_step2.png
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,1,1,FAILED,1.66s,Action 'click_vao_menu_“san_pham”' not supported in Product module,Testing\screenshots\fail_ViewP_002_step2.png
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.76s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,0.73s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,2,1,FAILED,4.83s,Action 'click_chon_mot_san_pham_bat_ky' not supported in Product module,Testing\screenshots\fail_ViewP_001_step3.png
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.31s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.32s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,0.37s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,2,1,FAILED,3.86s,Action 'click_chon_mot_san_pham_bat_ky' not supported in Product module,Testing\screenshots\fail_ViewP_001_step3.png
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.48s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.38s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,9.94s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,5.15s,,
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.35s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.47s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,0.43s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,5.14s,,
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.40s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.44s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,0.40s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,4.32s,,
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.28s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,1,0,1,FAILED,0.35s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step1.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,1,0,1,FAILED,0.35s,Action 'click_“san_pham”_tren_trang_chu' not supported in Product module,Testing\screenshots\fail_ViewP_004_step1.png
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,3.91s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,2,1,1,FAILED,1.57s,Action 'click_vao_mot_san_pham_co_thong_tin_đay_đu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step2.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,2,1,1,FAILED,1.60s,Action 'truy_cap_link_cua_san_pham_khong_ton_tai' not supported in Product module,Testing\screenshots\fail_ViewP_004_step2.png
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.42s,,
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,4.56s,,
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.36s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,2,1,1,FAILED,1.50s,Action 'click_vao_mot_san_pham_co_thong_tin_đay_đu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step2.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,2,2,0,PASSED,3.02s,,
+ViewP_001,Xem chi tiết sản phẩm thành công (Luồng cơ bản),3,3,0,PASSED,3.68s,,
+ViewP_002,Xem chi tiết sản phẩm khi không kết nối được CSDL,2,2,0,PASSED,2.38s,,
+ViewP_003,Kiểm tra hiển thị đầy đủ thông tin sản phẩm,2,1,1,FAILED,1.54s,Action 'click_vao_mot_san_pham_co_thong_tin_đay_đu' not supported in Product module,Testing\screenshots\fail_ViewP_003_step2.png
+ViewP_004,Kiểm tra sản phẩm không tồn tại,2,2,0,PASSED,2.45s,,
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,2,1,1,THẤT BẠI,2.67s,Action 'click_vao_nut_“tim_kiem”' not supported in Search module,Testing\screenshots\fail_SearchP_001_step2.png
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,2,1,1,THẤT BẠI,1.67s,Action 'click_vao_nut_“tim_kiem”' not supported in Search module,Testing\screenshots\fail_SearchP_002_step2.png
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,1,0,1,THẤT BẠI,0.61s,Action 'click_nut_“tim_kiem”' not supported in Search module,Testing\screenshots\fail_SearchP_003_step1.png
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,1,0,1,THẤT BẠI,0.63s,Action 'click_nut_“tim_kiem”' not supported in Search module,Testing\screenshots\fail_SearchP_004_step1.png
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,1,0,1,THẤT BẠI,0.57s,Action 'click_nut_“tim_kiem”' not supported in Search module,Testing\screenshots\fail_SearchP_005_step1.png
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,4,4,0,THÀNH CÔNG,6.33s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.37s,,
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.38s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.71s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.46s,,
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,4,4,0,THÀNH CÔNG,4.49s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.36s,,
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.38s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.60s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.40s,,
+SearchP_001,Không xác định,0,0,0,THẤT BẠI,2.63s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,2,1,1,THẤT BẠI,13.58s,"Lỗi thực thi module search: Message: 
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6344c0245+146d5]
+	chromedriver!GetHandleVerifier [0x7ff6344c02b0+14740]
+	chromedriver!(No symbol) [0x7ff63422d7cd]
+	chromedriver!(No symbol) [0x7ff634286c4e]
+	chromedriver!(No symbol) [0x7ff634286f5c]
+	chromedriver!(No symbol) [0x7ff6342d7cc7]
+	chromedriver!(No symbol) [0x7ff6342d4818]
+	chromedriver!(No symbol) [0x7ff634279018]
+	chromedriver!(No symbol) [0x7ff634279f03]
+	chromedriver!GetHandleVerifier [0x7ff6347d58f9+329d89]
+	chromedriver!GetHandleVerifier [0x7ff6347cfe46+3242d6]
+	chromedriver!GetHandleVerifier [0x7ff6347f30b2+347542]
+	chromedriver!GetHandleVerifier [0x7ff6344dd3d5+31865]
+	chromedriver!GetHandleVerifier [0x7ff6344e600c+3a49c]
+	chromedriver!GetHandleVerifier [0x7ff6344c9634+1dac4]
+	chromedriver!GetHandleVerifier [0x7ff6344c97e6+1dc76]
+	chromedriver!GetHandleVerifier [0x7ff6344ae2f7+2787]
+	KERNEL32!BaseThreadInitThunk [0x7ffa1ce07614+14]
+	ntdll!RtlUserThreadStart [0x7ffa1eb626a1+21]
+",Testing\screenshots\fail_SearchP_002_step2.png
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,12.32s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.43s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.39s,,
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,4,4,0,THÀNH CÔNG,4.37s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.22s,,
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.26s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.48s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.31s,,
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,4,4,0,THÀNH CÔNG,5.28s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.24s,,
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.35s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.44s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.41s,,
+SearchP_001,Tìm kiếm sản phẩm thành công theo tên,4,4,0,THÀNH CÔNG,4.94s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.19s,,
+SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.25s,,
+SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.34s,,
+SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.31s,,

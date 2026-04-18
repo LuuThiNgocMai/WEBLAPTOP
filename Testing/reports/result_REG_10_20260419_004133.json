@@ -1,0 +1,54 @@
+{
+  "ma_tc": "REG_10",
+  "ten_test_case": "Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai)",
+  "tong_so_buoc": 3,
+  "so_buoc_pass": 3,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:41:29.642924",
+  "thoi_gian_ket_thuc": "2026-04-19T00:41:33.098865",
+  "tong_thoi_gian_chay": "3.46s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_10",
+      "ten_test_case": "Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai)",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Chọn ngày sinh là ngày trong tương lai",
+      "module": "Date validation",
+      "action": "Chọn ngày sinh là ngày trong tương lai",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:30.095704",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:30.095704"
+    },
+    {
+      "ma_tc": "REG_10",
+      "ten_test_case": "Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai)",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Nhập các trường khác",
+      "module": "Date validation",
+      "action": "Nhập các trường khác",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:31.096944",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:31.096944"
+    },
+    {
+      "ma_tc": "REG_10",
+      "ten_test_case": "Đăng ký thất bại - Ngày sinh không hợp lệ (tương lai)",
+      "so_buoc": 3,
+      "noi_dung_buoc": "Click ĐĂNG KÝ",
+      "module": "Date validation",
+      "action": "Click ĐĂNG KÝ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:32.097839",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:32.097839"
+    }
+  ]
+}

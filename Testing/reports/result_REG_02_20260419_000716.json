@@ -1,0 +1,54 @@
+{
+  "ma_tc": "REG_02",
+  "ten_test_case": "Đăng ký thất bại - Tên đăng nhập đã tồn tại",
+  "tong_so_buoc": 3,
+  "so_buoc_pass": 3,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:07:10.274241",
+  "thoi_gian_ket_thuc": "2026-04-19T00:07:16.194810",
+  "tong_thoi_gian_chay": "5.92s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_02",
+      "ten_test_case": "Đăng ký thất bại - Tên đăng nhập đã tồn tại",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Nhập tên đăng nhập đã tồn tại",
+      "module": "Kiểm tra unique username",
+      "action": "Nhập tên đăng nhập đã tồn tại",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:07:11.032336",
+      "thoi_gian_ket_thuc": "2026-04-19T00:07:11.032336"
+    },
+    {
+      "ma_tc": "REG_02",
+      "ten_test_case": "Đăng ký thất bại - Tên đăng nhập đã tồn tại",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Nhập các trường còn lại hợp lệ",
+      "module": "Kiểm tra unique username",
+      "action": "Nhập các trường còn lại hợp lệ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:07:12.033819",
+      "thoi_gian_ket_thuc": "2026-04-19T00:07:12.033819"
+    },
+    {
+      "ma_tc": "REG_02",
+      "ten_test_case": "Đăng ký thất bại - Tên đăng nhập đã tồn tại",
+      "so_buoc": 3,
+      "noi_dung_buoc": "Click ĐĂNG KÝ",
+      "module": "Kiểm tra unique username",
+      "action": "Click ĐĂNG KÝ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:07:13.034598",
+      "thoi_gian_ket_thuc": "2026-04-19T00:07:13.034598"
+    }
+  ]
+}

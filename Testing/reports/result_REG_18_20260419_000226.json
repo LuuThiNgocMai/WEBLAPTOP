@@ -1,0 +1,41 @@
+{
+  "ma_tc": "REG_18",
+  "ten_test_case": "Đăng ký với dữ liệu chứa ký tự đặc biệt",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 2,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:02:23.187962",
+  "thoi_gian_ket_thuc": "2026-04-19T00:02:26.113086",
+  "tong_thoi_gian_chay": "2.93s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_18",
+      "ten_test_case": "Đăng ký với dữ liệu chứa ký tự đặc biệt",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Nhập Họ tên, Địa chỉ chứa ký tự đặc biệt",
+      "module": "Special characters handling",
+      "action": "Nhập Họ tên, Địa chỉ chứa ký tự đặc biệt",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:23.984235",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:23.984235"
+    },
+    {
+      "ma_tc": "REG_18",
+      "ten_test_case": "Đăng ký với dữ liệu chứa ký tự đặc biệt",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Click ĐĂNG KÝ",
+      "module": "Special characters handling",
+      "action": "Click ĐĂNG KÝ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:23.984235",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:23.984235"
+    }
+  ]
+}

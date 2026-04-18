@@ -1,0 +1,41 @@
+{
+  "ma_tc": "REG_12",
+  "ten_test_case": "Kiểm tra độ dài tối thiểu & tối đa các trường",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 2,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:02:05.696864",
+  "thoi_gian_ket_thuc": "2026-04-19T00:02:08.570905",
+  "tong_thoi_gian_chay": "2.87s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_12",
+      "ten_test_case": "Kiểm tra độ dài tối thiểu & tối đa các trường",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Nhập dữ liệu ở giới hạn độ dài cho từng trường",
+      "module": "Boundary testing",
+      "action": "Nhập dữ liệu ở giới hạn độ dài cho từng trường",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:06.434642",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:06.434642"
+    },
+    {
+      "ma_tc": "REG_12",
+      "ten_test_case": "Kiểm tra độ dài tối thiểu & tối đa các trường",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Click ĐĂNG KÝ",
+      "module": "Boundary testing",
+      "action": "Click ĐĂNG KÝ",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:02:06.435639",
+      "thoi_gian_ket_thuc": "2026-04-19T00:02:06.435639"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "ma_tc": "REG_17",
+  "ten_test_case": "Kiểm tra chọn ngày sinh từ Date Picker",
+  "tong_so_buoc": 2,
+  "so_buoc_pass": 2,
+  "so_buoc_fail": 0,
+  "trang_thai_cuoi": "PASSED",
+  "thoi_gian_bat_dau": "2026-04-19T00:41:42.312758",
+  "thoi_gian_ket_thuc": "2026-04-19T00:41:44.492273",
+  "tong_thoi_gian_chay": "2.18s",
+  "thong_bao_loi_cuoi_cung": "",
+  "screenshot_loi_cuoi_cung": "",
+  "chi_tiet_buoc": [
+    {
+      "ma_tc": "REG_17",
+      "ten_test_case": "Kiểm tra chọn ngày sinh từ Date Picker",
+      "so_buoc": 1,
+      "noi_dung_buoc": "Click vào trường Ngày sinh",
+      "module": "Date picker interaction",
+      "action": "Click vào trường Ngày sinh",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:42.490557",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:42.490557"
+    },
+    {
+      "ma_tc": "REG_17",
+      "ten_test_case": "Kiểm tra chọn ngày sinh từ Date Picker",
+      "so_buoc": 2,
+      "noi_dung_buoc": "Chọn ngày hợp lệ từ lịch",
+      "module": "Date picker interaction",
+      "action": "Chọn ngày hợp lệ từ lịch",
+      "trang_thai": "PASS",
+      "thong_bao_loi": "",
+      "duong_dan_anh_chup": "",
+      "thoi_gian_bat_dau": "2026-04-19T00:41:43.491496",
+      "thoi_gian_ket_thuc": "2026-04-19T00:41:43.491496"
+    }
+  ]
+}
