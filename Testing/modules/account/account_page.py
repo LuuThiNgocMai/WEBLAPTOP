@@ -18,6 +18,10 @@ class AccountPage(BasePage):
     # SweetAlert2 Locators
     SWAL_CONFIRM_BUTTON = (By.CSS_SELECTOR, "button.swal2-confirm")
     SWAL_SUCCESS_OK = (By.CSS_SELECTOR, "button.swal2-confirm") # Usually the same
+    LOGOUT_BUTTON = (By.LINK_TEXT, "ĐĂNG XUẤT")
+    ACCOUNT_MENU = (By.CSS_SELECTOR, ".bi-person-circle")
+    PROFILE_LINK = (By.LINK_TEXT, "Thông tin tài khoản")
+
 
     def update_profile(self, data):
         """Updates profile fields."""

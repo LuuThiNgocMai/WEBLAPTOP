@@ -7,7 +7,7 @@ import copy
 from typing import Dict, Any
 from pathlib import Path
 import google.generativeai as genai
-from config import GEMINI_API_KEY
+from config import GEMINI_API_KEY, MODEL_NAME
 from .prompt_templates import SYSTEM_PROMPT, ENRICH_PROMPT_TEMPLATE, EXAMPLES
 
 # --- Setup Logging ---
@@ -33,7 +33,7 @@ def _real_ai_call(testcase_data: Dict[str, Any], retries: int = 3) -> Dict[str, 
     
     for attempt in range(retries):
         try:
-            model = genai.GenerativeModel('gemini-2.0-flash')
+            model = genai.GenerativeModel(MODEL_NAME)
             # Set response_mime_type to application/json if supported, 
             # or just instruct in prompt (already done in SYSTEM_PROMPT)
             response = model.generate_content(
@@ -50,10 +50,14 @@ def _real_ai_call(testcase_data: Dict[str, Any], retries: int = 3) -> Dict[str, 
                 
             result = json.loads(text)
             
-            logging.info(f"Successfully generated data for {testcase_data.get('ma_tc')}")
-            logging.info(f"Prompt sent: {prompt}")
-            logging.info(f"Result: {text}")
+            # --- Post-processing: Ensure single values per field ---
+            if "du_lieu_test_ai" in result and isinstance(result["du_lieu_test_ai"], dict):
+                for key, value in result["du_lieu_test_ai"].items():
+                    if isinstance(value, list):
+                        # If AI returns a list despite the prompt, just take the first item
+                        result["du_lieu_test_ai"][key] = value[0] if value else ""
             
+            logging.info(f"Successfully generated data for {testcase_data.get('ma_tc')}")
             return result
         except Exception as e:
             logging.error(f"Attempt {attempt + 1} failed for {testcase_data.get('ma_tc')}: {str(e)}")

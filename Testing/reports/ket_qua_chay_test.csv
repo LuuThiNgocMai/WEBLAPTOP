@@ -227,3 +227,31 @@ SearchP_002,Tìm kiếm sản phẩm theo danh mục,4,4,0,THÀNH CÔNG,4.19s,,
 SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,3,3,0,THÀNH CÔNG,3.25s,,
 SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,3,3,0,THÀNH CÔNG,3.34s,,
 SearchP_005,Tìm kiếm sản phẩm với từ khóa rỗng,3,3,0,THÀNH CÔNG,3.31s,,
+SearchP_001,Không xác định,0,0,0,THẤT BẠI,2.66s,,
+SearchP_002,Tìm kiếm sản phẩm theo danh mục,2,1,1,THẤT BẠI,3.18s,"Lỗi thực thi module search: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=147.0.7727.57); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+	chromedriver!GetHandleVerifier [0x7ff6260f0245+146d5]
+	chromedriver!GetHandleVerifier [0x7ff6260f02b0+14740]
+	chromedriver!(No symbol) [0x7ff625e5d7cd]
+	chromedriver!(No symbol) [0x7ff625e48842]
+	chromedriver!(No symbol) [0x7ff625e6f0b1]
+	chromedriver!(No symbol) [0x7ff625ee70b0]
+	chromedriver!(No symbol) [0x7ff625f040e2]
+	chromedriver!(No symbol) [0x7ff625ea9018]
+	chromedriver!(No symbol) [0x7ff625ea9f03]
+	chromedriver!GetHandleVerifier [0x7ff6264058f9+329d89]
+	chromedriver!GetHandleVerifier [0x7ff6263ffe46+3242d6]
+	chromedriver!GetHandleVerifier [0x7ff6264230b2+347542]
+	chromedriver!GetHandleVerifier [0x7ff62610d3d5+31865]
+	chromedriver!GetHandleVerifier [0x7ff62611600c+3a49c]
+	chromedriver!GetHandleVerifier [0x7ff6260f9634+1dac4]
+	chromedriver!GetHandleVerifier [0x7ff6260f97e6+1dc76]
+	chromedriver!GetHandleVerifier [0x7ff6260de2f7+2787]
+	KERNEL32!BaseThreadInitThunk [0x7ffa1ce07614+14]
+	ntdll!RtlUserThreadStart [0x7ffa1eb626a1+21]
+ (Không thể chụp ảnh màn hình)",
+SearchP_003,Không xác định,0,0,0,THẤT BẠI,0.01s,,
+SearchP_004,Không xác định,0,0,0,THẤT BẠI,0.01s,,
+SearchP_005,Không xác định,0,0,0,THẤT BẠI,0.01s,,

@@ -36,5 +36,17 @@ class LoginHandler:
             # Optional: verify success if needed immediately
             return True, "Đã nhấn nút đăng nhập"
             
+        elif "google" in action_name:
+            self.page.click_google_login()
+            return True, "Đã nhấn nút đăng nhập bằng Google"
+            
+        elif "quen_mat_khau" in action_name or "forgot" in action_name:
+            self.page.click_forgot_password()
+            return True, "Đã nhấn link Quên mật khẩu"
+            
+        elif "dang_ky_ngay" in action_name or "signup" in action_name:
+            self.page.click_signup()
+            return True, "Đã nhấn link Đăng ký ngay"
+            
         else:
             return False, f"Hành động '{action_name}' chưa được hỗ trợ trong module Login"

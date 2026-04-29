@@ -10,6 +10,11 @@ class LoginPage(BasePage):
     PASSWORD_INPUT = (By.ID, "password")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "button[type='submit']")
     LOGIN_SUCCESS_INDICATOR = (By.CSS_SELECTOR, ".bi-person-circle")
+    GOOGLE_LOGIN_BUTTON = (By.CLASS_NAME, "btn-google")
+    FORGOT_PASSWORD_LINK = (By.LINK_TEXT, "Quên mật khẩu")
+    SIGNUP_LINK = (By.LINK_TEXT, "Đăng ký ngay")
+
+
 
     def navigate_to_login(self, env_config=None):
         url = URL_CONFIG.get("login", "https://localhost:44396/Login")
@@ -31,3 +36,13 @@ class LoginPage(BasePage):
 
     def is_logged_in(self):
         return self.is_visible(self.LOGIN_SUCCESS_INDICATOR)
+
+    def click_google_login(self):
+        self.click(self.GOOGLE_LOGIN_BUTTON)
+
+    def click_forgot_password(self):
+        self.click(self.FORGOT_PASSWORD_LINK)
+
+    def click_signup(self):
+        self.click(self.SIGNUP_LINK)
+

@@ -26,5 +26,15 @@ class AccountHandler:
                 return self.page.handle_swal_confirmation()
             return False, "Thiếu dữ liệu mật khẩu mới"
 
+        elif "dang_xuat" in action_name or "click_dang_xuat" in action_name:
+            # Need to find the logout button, might need to open menu first
+            try:
+                self.page.click((By.LINK_TEXT, "ĐĂNG XUẤT"))
+            except:
+                # Fallback if it's hidden in a menu
+                self.page.click(self.page.ACCOUNT_MENU)
+                self.page.click(self.page.LOGOUT_BUTTON)
+            return True, "Đã nhấn đăng xuất"
+
         else:
             return False, f"Hành động '{action_name}' chưa được hỗ trợ trong module Account"

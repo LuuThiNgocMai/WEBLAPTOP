@@ -27,9 +27,9 @@ class ProductHandler:
             title = self.page.get_product_title()
             return success, f"Trang chi tiết sản phẩm đã tải: {title}"
             
-        elif "san_pham_khong_ton_tai" in action_name:
-            self.page.navigate_to_product("-999")
-            return True, "Đã điều hướng tới link sản phẩm không tồn tại (ID: -999)"
+        elif "san_pham_khong_ton_tai" in action_name or "nhap_url_san_pham_sai" in action_name:
+            self.page.navigate_to_product("999999")
+            return True, "Đã điều hướng tới link sản phẩm không tồn tại (ID: 999999)"
             
         else:
             return False, f"Hành động '{action_name}' chưa được hỗ trợ trong module Product"

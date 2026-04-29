@@ -14,10 +14,21 @@ class SearchHandler:
             self.page.navigate_to_home(env_config)
             return True, "Đã mở trang chủ"
             
-        elif any(k in action_name for k in ["nhap_tu_khoa_tim_kiem", "nhap_ten_san_pham", "o_tim_kiem"]):
-            keyword = test_data_ai.get('tu_khoa') or test_data_ai.get('keyword') or test_data_ai.get('product_name') or test_data_ai.get('tên sản phẩm') or 'laptop'
+        elif any(k in action_name for k in ["nhap_tu_khoa", "tim_kiem", "nhap_ten", "o_tim_kiem"]):
+            # Check for keyword in all possible fields
+            keyword = ""
+            keys_to_try = ['tu_khoa', 'keyword', 'product_name', 'tên sản phẩm', 'search_query', 'name']
+            for k in keys_to_try:
+                if k in test_data_ai:
+                    keyword = test_data_ai[k]
+                    break
+            
+            # If still empty, check step_info for clues (manual data)
+            if not keyword and "Dữ liệu test" in step_info:
+                 keyword = step_info["Dữ liệu test"]
+
             self.page.enter_search_keyword(keyword)
-            return True, f"Đã nhập từ khóa tìm kiếm: {keyword}"
+            return True, f"Đã nhập từ khóa tìm kiếm: {keyword if keyword else '(rỗng)'}"
             
         elif action_name == "nhan_nut_tim_kiem" or "tim_kiem" in action_name:
             self.page.click_search()

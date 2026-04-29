@@ -12,6 +12,7 @@ Ràng buộc bắt buộc:
 - Không được sinh kết quả thực tế
 - Không được sinh trạng thái test
 - Không được suy diễn ngoài thông tin testcase được cung cấp
+- MỖI TRƯỜNG DỮ LIỆU CHỈ TRẢ VỀ DUY NHẤT 1 GIÁ TRỊ (Không trả về mảng, không trả về nhiều phương án).
 
 Chỉ được dựa trên:
 - Tên Test Case
@@ -23,6 +24,7 @@ Chỉ được dựa trên:
 
 Dữ liệu sinh ra phải thực tế, phù hợp với ngữ cảnh Việt Nam.
 Trả về đúng JSON với cấu trúc: {"du_lieu_test_ai": {}}
+
 """
 
 # Template for the enrichment request
@@ -38,7 +40,7 @@ Các bước thực hiện:
 Dữ liệu test gốc: {du_lieu_test_goc}
 Ghi chú tự động hóa: {ghi_chu_tu_dong_hoa}
 
-Hãy trả về đúng JSON với cấu trúc sau:
+Hãy trả về đúng JSON với cấu trúc sau (Lưu ý: Mỗi key chỉ lấy 1 value duy nhất, không dùng mảng []):
 {{
   "du_lieu_test_ai": {{}}
 }}

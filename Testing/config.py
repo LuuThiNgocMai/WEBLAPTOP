@@ -1,5 +1,6 @@
 # Testing/config.py
-GEMINI_API_KEY = "AIzaSyAzmn_Sr99IRp6xigdlYOaoRV2k6gOKON8"
+GEMINI_API_KEY = "abccc"
+MODEL_NAME = "gemini-2.5-flash" # Bạn có thể đổi thành "gemini-1.5-flash" hoặc "gemini-1.5-pro"
 
 # Base configuration for the laptop store automation
 BASE_URL = "https://localhost:44396"
