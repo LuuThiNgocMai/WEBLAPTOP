@@ -12,6 +12,6 @@ namespace WEBLAPTOP.ViewModel
         public string TenSP { get; set; }
         public int? GiaBan { get; set; }
         public int? SoLuong { get; set; }
-        public int? TongTien { get; set; }
+        public decimal? TongTien { get; set; }
     }
 }

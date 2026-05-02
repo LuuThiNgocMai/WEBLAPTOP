@@ -1,11 +1,10 @@
-﻿    @model List<WEBLAPTOP.ViewModel.CartItem>
+﻿@model List<WEBLAPTOP.ViewModel.CartItem>
 @{
     ViewBag.Title = "Index";
     ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 <style>
     .cart-page-container {
         display: flex;
@@ -242,9 +241,11 @@
                 <div class="cart-item">
                     <div class="item-image">
                         @{
-                            var imagePath = !string.IsNullOrEmpty(item.Images_url)
-                                ? "~/Images/Product_images/" + item.Images_url
-                                : "~/Images/no-image.png";
+                            var imagePaths = item.Images_url.Split(';');
+                            var imagelink = imagePaths[0];
+                            var imagePath = !string.IsNullOrEmpty(imagelink)
+                                                ? "~/Images/Product_images/" + imagelink
+                                                : "~/Images/no-image.png";
                         }
                         <img src="@Url.Content(imagePath)" alt="@item.TenSP" />
                     </div>
@@ -317,7 +318,8 @@ else
     </div>
 }
 
-<script type="text/javascript">function changeQty(button, amount) {
+<script type="text/javascript">
+    function changeQty(button, amount) {
         var form = button.closest('.quantity-form');
         var qtyInput = form.querySelector('input[name="so_luong"]');
 

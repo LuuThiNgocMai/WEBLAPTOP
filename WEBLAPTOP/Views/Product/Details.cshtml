@@ -329,11 +329,11 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <div class="btn btn-warning w-100 fw-semibold">Mua ngay</div>
+                    <div class="btn btn-warning w-100 fw-semibold" onclick="window.location.href='@Url.Action("QuickBuy", "PayBills", new { id_sp = Model.ID_SP })'">Mua ngay</div>
                     @*<div class="d-flex align-items-center p-2 text-secondary" style="font-size: 30px;"><i class="bi bi-cart" style="cursor: pointer;"></i></div>*@
                     <button style="border: none;" class="bg-light" onclick="window.location.href = '@Url.Action("AddToCart", "Cart", new { id = Model.ID_SP })';">
-                    <div class="d-flex align-items-center p-2 text-secondary" style="font-size: 30px;">
-                        <i class="bi bi-cart" style="cursor: pointer;"></i>
+                        <div class="d-flex align-items-center p-2 text-secondary" style="font-size: 30px;">
+                            <i class="bi bi-cart" style="cursor: pointer;"></i>
                         </div>
                     </button>
                 </div>
