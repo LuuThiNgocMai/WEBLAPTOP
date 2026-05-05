@@ -14,25 +14,62 @@ class SearchHandler:
             self.page.navigate_to_home(env_config)
             return True, "Đã mở trang chủ"
             
-        elif any(k in action_name for k in ["nhap_tu_khoa", "tim_kiem", "nhap_ten", "o_tim_kiem"]):
+        # 1. Check for explicit click/submit action
+        elif any(k in action_name for k in ["click", "nhan", "bam", "nut_tim_kiem"]):
+            self.page.click_search()
+            return True, "Đã nhấn nút tìm kiếm"
+            
+        # 2. Check for explicit input action
+        elif any(k in action_name for k in ["nhap", "dien", "go_tu_khoa", "o_tim_kiem", "tu_khoa", "keyword"]):
             # Check for keyword in all possible fields
             keyword = ""
-            keys_to_try = ['tu_khoa', 'keyword', 'product_name', 'tên sản phẩm', 'search_query', 'name']
-            for k in keys_to_try:
-                if k in test_data_ai:
-                    keyword = test_data_ai[k]
-                    break
+            # Expanded keys to try (including Vietnamese and common technical terms)
+            keys_to_try = [
+                'tu_khoa', 'keyword', 'product_name', 'tên sản phẩm', 'ten_san_pham', 
+                'search_query', 'name', 'tên danh mục', 'ten_danh_muc', 'danh_muc'
+            ]
             
-            # If still empty, check step_info for clues (manual data)
-            if not keyword and "Dữ liệu test" in step_info:
+            # Check step_info for manual data from Excel first
+            if "Dữ liệu test" in step_info and step_info["Dữ liệu test"]:
                  keyword = step_info["Dữ liệu test"]
-
+            
+            # If still empty, check AI generated data
+            if not keyword:
+                for k in keys_to_try:
+                    if k in test_data_ai:
+                        keyword = test_data_ai[k]
+                        break
+            
             self.page.enter_search_keyword(keyword)
             return True, f"Đã nhập từ khóa tìm kiếm: {keyword if keyword else '(rỗng)'}"
             
-        elif action_name == "nhan_nut_tim_kiem" or "tim_kiem" in action_name:
+        # 3. Fallback for generic "Tìm kiếm" or steps containing "tim_kiem" but not specific to input/click
+        elif "tim_kiem" in action_name:
+            # Check if there's a keyword to enter as a precaution
+            keyword = ""
+            keys_to_try = [
+                'tu_khoa', 'keyword', 'product_name', 'tên sản phẩm', 'ten_san_pham', 
+                'search_query', 'name', 'tên danh mục', 'ten_danh_muc', 'danh_muc'
+            ]
+            
+            # Manual data from Excel
+            if "Dữ liệu test" in step_info and step_info["Dữ liệu test"]:
+                 keyword = step_info["Dữ liệu test"]
+            
+            # AI data
+            if not keyword:
+                for k in keys_to_try:
+                    if k in test_data_ai:
+                        keyword = test_data_ai[k]
+                        break
+            
+            # If we found a keyword and the action name doesn't explicitly say "click", 
+            # we can try to input it. If it was already input in a previous step, this is just a redundant but safe action.
+            if keyword and not any(k in action_name for k in ["click", "nhan", "bam"]):
+                self.page.enter_search_keyword(keyword)
+                
             self.page.click_search()
-            return True, "Đã nhấn nút tìm kiếm"
+            return True, "Đã thực hiện tìm kiếm"
             
         else:
             return False, f"Hành động '{action_name}' chưa được hỗ trợ trong module Search"

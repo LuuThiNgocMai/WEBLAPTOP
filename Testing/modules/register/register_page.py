@@ -16,29 +16,42 @@ class RegisterPage(BasePage):
     GENDER_FEMALE = (By.ID, "female")
     SUBMIT_BUTTON = (By.CSS_SELECTOR, "button[type='submit']")
     
+    # Navigation Locators
+    ACCOUNT_MENU = (By.CSS_SELECTOR, ".bi-person-circle")
+    REGISTER_LINK = (By.XPATH, "//a[contains(., 'Đăng ký') or contains(., 'Đăng kí') or contains(@href, 'SignUp')]")
+    REGISTER_NOW_LINK = (By.XPATH, "//a[contains(text(), 'Đăng ký ngay')] | //a[contains(@href, 'SignUp')]")
+    LOGOUT_BUTTON = (By.XPATH, "//a[contains(text(), 'ĐĂNG XUẤT') or contains(text(), 'Đăng xuất') or contains(., 'Đăng xuất')]")
+    
     def register(self, data):
         """Fills out the registration form."""
+        if data is None:
+            return
+            
         if 'tên đăng nhập' in data or 'tk' in data:
-            self.enter_text(self.USERNAME_INPUT, data.get('tên đăng nhập') or data.get('tk'))
+            val = data.get('tên đăng nhập') if 'tên đăng nhập' in data else data.get('tk')
+            self.enter_text(self.USERNAME_INPUT, val)
         
         if 'mật khẩu' in data or 'mk' in data:
-            self.enter_text(self.PASSWORD_INPUT, data.get('mật khẩu') or data.get('mk'))
+            val = data.get('mật khẩu') if 'mật khẩu' in data else data.get('mk')
+            self.enter_text(self.PASSWORD_INPUT, val)
             
         if 'họ và tên' in data or 'tenkh' in data:
-            self.enter_text(self.FULLNAME_INPUT, data.get('họ và tên') or data.get('tenkh'))
+            val = data.get('họ và tên') if 'họ và tên' in data else data.get('tenkh')
+            self.enter_text(self.FULLNAME_INPUT, val)
             
         if 'địa chỉ' in data:
             self.enter_text(self.ADDRESS_INPUT, data.get('địa chỉ'))
             
         if 'số điện thoại' in data or 'sdt' in data:
-            self.enter_text(self.PHONE_INPUT, data.get('số điện thoại') or data.get('sdt'))
+            val = data.get('số điện thoại') if 'số điện thoại' in data else data.get('sdt')
+            self.enter_text(self.PHONE_INPUT, val)
             
         if 'ngày sinh' in data:
-            # Note: HTML5 date input usually expects YYYY-MM-DD
             self.enter_text(self.BIRTHDAY_INPUT, data.get('ngày sinh'))
             
         if 'email' in data:
             self.enter_text(self.EMAIL_INPUT, data.get('email'))
+
             
         if 'giới tính' in data:
             gender = str(data.get('giới tính')).lower()

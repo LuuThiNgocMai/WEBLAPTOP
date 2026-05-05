@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import logging
+import time
 
 class BasePage:
     def __init__(self, driver):
@@ -17,14 +18,29 @@ class BasePage:
             return None
 
     def click(self, locator):
-        element = self.wait.until(EC.element_to_be_clickable(locator))
-        element.click()
+        try:
+            element = self.wait.until(EC.element_to_be_clickable(locator))
+            # Scroll to element to ensure it's not blocked by fixed headers/chatbots
+            self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+            time.sleep(0.1)
+            element.click()
+        except Exception as e:
+            self.logger.warning(f"Standard click failed for {locator}, trying JS click. Error: {str(e)}")
+            self.click_js(locator)
+
+    def click_js(self, locator):
+        element = self.find_element(locator)
+        if element:
+            self.driver.execute_script("arguments[0].click();", element)
+        else:
+            raise NoSuchElementException(f"Cannot JS click, element not found: {locator}")
 
     def enter_text(self, locator, text):
         element = self.find_element(locator)
         if element:
             element.clear()
-            element.send_keys(text)
+            # Ensure text is not None to avoid 'NoneType object is not iterable' error
+            element.send_keys(str(text) if text is not None else "")
         else:
             raise NoSuchElementException(f"Cannot enter text, element not found: {locator}")
 
@@ -32,9 +48,10 @@ class BasePage:
         element = self.find_element(locator)
         return element.text if element else ""
 
-    def is_visible(self, locator):
+    def is_visible(self, locator, timeout=None):
         try:
-            self.wait.until(EC.visibility_of_element_located(locator))
+            wait = WebDriverWait(self.driver, timeout) if timeout else self.wait
+            wait.until(EC.visibility_of_element_located(locator))
             return True
         except TimeoutException:
             return False

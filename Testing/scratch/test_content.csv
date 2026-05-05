@@ -1,0 +1,12 @@
+﻿STT,Mã TC,Tên Test Case,Mô tả,Điều kiện tiên quyết,Các bước thực hiện,Dữ liệu test,Kết quả mong đợi,Ghi chú / Automation Note
+1,SearchP_001,Tìm kiếm sản phẩm thành công theo tên,Kiểm tra tìm kiếm sản phẩm theo từ khóa tên,Không có,"2. Nhập tên sản phẩm vào ô tìm kiếm 
+3. Click nút TÌM KIẾM",,"Hệ thống hiển thị danh sách sản phẩm khớp với từ khóa tìm kiếm (tên, số lượng, giá tiền)",Luồng chính - Nên tự động hóa
+2,SearchP_002,Tìm kiếm sản phẩm theo danh mục,Kiểm tra tìm kiếm sản phẩm theo danh mục,Không có,"
+2. Nhập tên danh mục vào ô tìm kiếm 
+3. Click nút TÌM KIẾM",,"Hệ thống hiển thị danh sách sản phẩm thuộc danh mục đã chọn (tên, số lượng, giá tiền)",Luồng chính - Nên tự động hóa
+3,SearchP_003,Tìm kiếm sản phẩm khi không có kết quả,Kiểm tra trường hợp không tìm thấy sản phẩm,Không có,"
+2. Nhập từ khóa không tồn tại vào ô tìm kiếm 
+3. Click nút TÌM KIẾM",,Hệ thống hiển thị thông báo “Không tìm thấy sản phẩm” hoặc danh sách rỗng,Test case biên - Nên tự động hóa
+4,SearchP_004,Tìm kiếm sản phẩm khi không kết nối được CSDL,Kiểm tra xử lý lỗi kết nối cơ sở dữ liệu,Không có,"
+2. Nhập từ khóa vào ô tìm kiếm 
+3. Click nút TÌM KIẾM",,Hệ thống hiển thị thông báo lỗi kết nối và use case kết thúc,Luồng lỗi - Nên tự động hóa

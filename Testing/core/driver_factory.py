@@ -16,7 +16,7 @@ def create_driver(headless=False, implicit_wait=10, page_load_timeout=30):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-notifications")
     chrome_options.add_argument("--start-maximized")
-    chrome_options.add_experimental_option("detach", True)
+    chrome_options.add_experimental_option("detach", False)
 
     # Initialize Driver (Assumes chromedriver is in PATH or handled by system)
     # For a more robust approach, use webdriver-manager

@@ -1,0 +1,28 @@
+[
+  {
+    "stt": 6,
+    "ma_tc": "Cart_008",
+    "ten_test_case": "Giảm số lượng sản phẩm xuống 1",
+    "mo_ta": "Kiểm tra hành vi khi giảm số lượng về 1",
+    "dieu_kien_tien_quyet": "Khách hàng đã đăng nhập và giỏ hàng có sản phẩm",
+    "cac_buoc_thuc_hien_goc": "1. Vào giỏ hàng \n2. Click nút “-” liên tục cho đến khi số lượng = 1",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Vào giỏ hàng"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Click nút “-” liên tục cho đến khi số lượng = 1"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Sản phẩm tự động bị xóa khỏi giỏ hàng",
+    "ghi_chu_tu_dong_hoa": "Test case biên",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "ma_san_pham": "Gigabyte AORUS 17H"
+    },
+    "trang_thai_review": "NEW"
+  }
+]

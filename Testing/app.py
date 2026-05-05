@@ -9,6 +9,10 @@ from parsers import parse_excel, parse_csv
 from utils.normalizer import normalize_testcase
 from ai import enrich_test_data
 from core.test_runner import run_test_case
+import core.step_dispatcher as sd
+import importlib
+importlib.reload(sd)
+from core.step_dispatcher import dispatch_step
 from core.driver_factory import create_driver
 
 # --- Configuration & Paths ---
@@ -129,6 +133,10 @@ def render_execution_report(results):
 def main():
     st.set_page_config(page_title="Hệ thống Automation Toàn diện", layout="wide")
     
+    # Dynamic key for file uploader to allow clearing (Must initialize early)
+    if 'uploader_key' not in st.session_state:
+        st.session_state.uploader_key = 0
+    
     # --- Sidebar Header & Project Status ---
     with st.sidebar:
         st.title("Điều khiển Hệ thống")
@@ -144,9 +152,28 @@ def main():
         st.warning(f"Đã Duyệt: {len(rev_data)} TC")
         
         st.markdown("---")
-        if st.button("Reset Toàn bộ Dữ liệu"):
+        if st.button("Reset Toàn bộ Dữ liệu", type="secondary"):
+            # 1. Clear JSON files in data directory
             for f in [STANDARDIZED_PATH, AI_DATA_PATH, REVIEWED_PATH]:
-                if f.exists(): f.unlink()
+                if f.exists(): 
+                    try: f.unlink()
+                    except: pass
+            
+            # 2. Clear uploads and reports physical files
+            for d in [UPLOAD_DIR, REPORT_DIR]:
+                for f in d.glob("*"):
+                    if f.is_file():
+                        try: f.unlink()
+                        except: pass
+            
+            # 3. Clear Streamlit session state and increment uploader key
+            new_key = st.session_state.uploader_key + 1
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+            st.session_state.uploader_key = new_key
+            
+            st.success("Đã reset toàn bộ dữ liệu thành công!")
+            time.sleep(1)
             st.rerun()
 
     st.title("Hệ thống Quản lý & Automation Đồng nhất")
@@ -161,11 +188,14 @@ def main():
         "Báo cáo Analytics"
     ])
 
+
     # --- TAB 1: Dự án & Chuẩn hóa ---
     with tab1:
         st.header("Bước 1: Tải lên & Chuẩn hóa Dữ liệu")
         
-        uploaded_file = st.file_uploader("Tải lên tệp Excel/CSV Test Case", type=["xlsx", "csv"])
+        uploaded_file = st.file_uploader("Tải lên tệp Excel/CSV Test Case", 
+                                        type=["xlsx", "csv"], 
+                                        key=f"uploader_{st.session_state.uploader_key}")
         if uploaded_file:
             if st.button("Thực hiện Chuẩn hóa", use_container_width=True):
                 fp = UPLOAD_DIR / uploaded_file.name
@@ -345,27 +375,38 @@ def main():
                             status_area.info("Đang khởi tạo trình duyệt dùng chung...")
                             batch_driver = create_driver(headless=headless)
                             
+                        batch_logged_in = False
                         for i, selection in enumerate(to_run):
                             sm = selection.split(" - ")[0]
                             tc_node = next(it for it in rev_data if it['ma_tc'] == sm)
                             status_area.info(f"Đang chạy {sm}: {tc_node['ten_test_case']}")
                             
-                            # Điều hướng chỉ cho TC đầu tiên (nếu dùng single browser)
-                            # Hoặc cho mọi TC nếu dùng nhiều trình duyệt
-                            should_nav = (i == 0) if single_browser else True
+                            # Chỉ tự động quay về trang chủ trước mỗi TC đối với module ĐĂNG KÝ 
+                            # vì module này hay bị redirect sang màn login/account sau khi xong.
+                            tc_name = tc_node.get('ten_test_case', '').lower()
+                            # Tự động quay về trang chủ cho module Đăng ký và Giỏ hàng
+                            is_register = any(k in tc_name for k in ['đăng ký', 'register', 'placeholder', 'độ dài', 'giao diện'])
+                            is_cart = sm.upper().startswith("CART")
+                            
+                            if is_register or is_cart:
+                                should_nav = True
+                            else:
+                                # Các module khác giữ logic cũ: chỉ nav ở TC đầu tiên nếu dùng single browser
+                                should_nav = (i == 0) if single_browser else True
                             
                             # Xóa cookie nếu được yêu cầu (trừ TC đầu tiên vì nó vừa mở)
                             should_clear = clear_cookies if (single_browser and i > 0) else False
 
                             # EXECUTE
-                            res = run_test_case(
+                            res, batch_logged_in = run_test_case(
                                 tc_node, 
                                 headless=headless, 
                                 env_config=env_config, 
                                 keep_open=keep_open if not single_browser else True, # Giữ mở để TC sau chạy tiếp
                                 existing_driver=batch_driver,
                                 should_navigate=should_nav,
-                                clear_cookies=should_clear
+                                clear_cookies=should_clear,
+                                already_logged_in=batch_logged_in
                             )
                             results.append(res)
                             

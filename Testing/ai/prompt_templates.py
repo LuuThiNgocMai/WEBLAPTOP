@@ -23,6 +23,19 @@ Chỉ được dựa trên:
 - Ghi chú tự động hóa
 
 Dữ liệu sinh ra phải thực tế, phù hợp với ngữ cảnh Việt Nam.
+Riêng module Đăng nhập:
+- Tên đăng nhập mặc định: thanhtung, mật khẩu mặc định: abc123.
+- Nếu case yêu cầu để trống Tên đăng nhập: Trường 'tên đăng nhập' phải là "", nhưng 'mật khẩu' vẫn phải nhập giá trị mặc định.
+- Nếu case yêu cầu để trống Mật khẩu: Trường 'mật khẩu' phải là "", nhưng 'tên đăng nhập' vẫn phải nhập giá trị mặc định.
+- Nếu case yêu cầu để trống cả hai: Cả 2 trường đều phải là "".
+- Nếu case yêu cầu tên đăng nhập không tồn tại: Sinh tên đăng nhập ngẫu nhiên (ví dụ: user_999).
+- Nếu case yêu cầu sai mật khẩu: Sinh mật khẩu sai (ví dụ: SaiMatKhau123).
+
+Riêng module Tìm kiếm: 
+- Nếu case tìm kiếm theo danh mục: Chỉ sinh trường 'danh_muc' (không cần 'tu_khoa').
+- Nếu case tìm kiếm không có kết quả (không tồn tại): Sinh 'tu_khoa' là !@##$$
+- Nếu case tìm kiếm với từ khóa rỗng: Cả 'tu_khoa' và 'danh_muc' đều phải để trống ("")
+
 Trả về đúng JSON với cấu trúc: {"du_lieu_test_ai": {}}
 
 """
@@ -52,9 +65,17 @@ EXAMPLES = {
         "input": "Đăng nhập hệ thống với tài khoản admin",
         "output": {
             "du_lieu_test_ai": {
-                "email": "admin@gmail.com",
-                "mat_khau": "Admin@123",
-                "loai_tai_khoan": "quản trị viên"
+                "tên đăng nhập": "thanhtung",
+                "mật khẩu": "abc123"
+            }
+        }
+    },
+    "register": {
+        "input": "Đăng ký tài khoản mới hợp lệ",
+        "output": {
+            "du_lieu_test_ai": {
+                "tên đăng nhập": "MockUser54265",
+                "mật khẩu": "MockPass123"
             }
         }
     },
@@ -62,7 +83,7 @@ EXAMPLES = {
         "input": "Tìm kiếm sản phẩm trên trang chủ",
         "output": {
             "du_lieu_test_ai": {
-                "tu_khoa": "Laptop Gaming ASUS",
+                "tu_khoa": "Gigabyte G6 MF i7",
                 "danh_muc": "Điện tử",
                 "sap_xep": "Giá thấp đến cao"
             }

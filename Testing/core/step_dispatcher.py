@@ -14,26 +14,44 @@ def _normalize_string(s):
     if not s: return ""
     s = s.lower().strip()
     s = "".join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn')
-    s = s.replace(" ", "_").replace("-", "_")
+    s = s.replace("đ", "d").replace(" ", "_")
     return s
 
-def dispatch_step(driver, step_info, test_data_ai, automation_notes, env_config=None):
+
+def dispatch_step(driver, step_info, test_data_ai, automation_notes, env_config=None, ma_tc=""):
     """
     Identifies the module from automation_notes and executes the corresponding logic.
     """
     if env_config is None:
         env_config = {}
 
-    # 1. Parse module from automation notes (e.g., "module=login")
+    # 1. Parse module từ tiền tố của mã Test Case (ưu tiên cao nhất)
     notes = str(automation_notes or "").lower()
     module_name = "general"
     
-    if "module=" in notes:
+    ma_tc_upper = str(ma_tc).upper()
+    if ma_tc_upper.startswith("ACC"):
+        module_name = "account"
+    elif ma_tc_upper.startswith("LOG"):
+        module_name = "login"
+    elif ma_tc_upper.startswith("SEA"):
+        module_name = "search"
+    elif ma_tc_upper.startswith("PRO"):
+        module_name = "product"
+    elif ma_tc_upper.startswith("CAR"):
+        module_name = "cart"
+    elif ma_tc_upper.startswith("CHE"):
+        module_name = "checkout"
+    elif ma_tc_upper.startswith("REG"):
+        module_name = "register"
+    elif "module=" in notes:
         module_name = notes.split("module=")[1].split(";")[0].strip()
     else:
         # Heuristic: try to guess module from step content if notes are missing
         content = step_info.get('noi_dung', '').lower()
-        if any(k in content for k in ["đăng nhập", "login", "mật khẩu", "email"]):
+        # If it's a login case (name or description contains login) and the step is about avatar/icon, it belongs to login
+        # We can also check if any(k in content for k in ["đăng nhập", "login", "mật khẩu", "email"])
+        if any(k in content for k in ["đăng nhập", "login", "mật khẩu", "email", "avatar", "biểu tượng"]):
             module_name = "login"
         elif any(k in content for k in ["tìm kiếm", "search", "keyword"]):
             module_name = "search"
@@ -79,7 +97,13 @@ def dispatch_step(driver, step_info, test_data_ai, automation_notes, env_config=
             return handler.execute_action(action_name, step_info, test_data_ai, env_config)
             
         elif module_name == "account":
-            handler = AccountHandler(driver)
+            # Force reload to avoid Streamlit cache issues
+            import importlib
+            import modules.account.account_page as acc_page_mod
+            import modules.account.account_handler as acc_mod
+            importlib.reload(acc_page_mod)
+            importlib.reload(acc_mod)
+            handler = acc_mod.AccountHandler(driver)
             return handler.execute_action(action_name, step_info, test_data_ai, env_config)
             
         else:
