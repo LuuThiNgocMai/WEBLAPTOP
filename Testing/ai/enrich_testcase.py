@@ -83,76 +83,118 @@ def _mock_ai_call(testcase_data: Dict[str, Any]) -> Dict[str, Any]:
     # User's Baseline Valid Data (used for 'already exists' scenarios)
     BASELINE_REG = {
         "tên đăng nhập": "MockUser54265",
-        "mật khẩu": "MockPass123"
+        "mật khẩu": "MockPass123",
+        "họ và tên": "Nguyen Van A",
+        "địa chỉ": "123 Đường Example, Hà Nội",
+        "số điện thoại": "0369852147",
+        "ngày sinh": "1990-01-01",
+        "email": "mock.user@example.com",
+        "giới tính": "Nam"
     }
 
-    # 1. Module Detection
+    # 1. Module Detection (Mutually Exclusive)
     ma_tc = testcase_data.get('ma_tc', '').upper()
+    is_reg = is_login = is_cart = is_product = is_account = False
+
+    # Priority 1: Prefix in Mã TC (Strongest)
+    if ma_tc.startswith('REG'):
+        is_reg = True
+    elif ma_tc.startswith('LOG') or ma_tc.startswith('TC_'):
+        is_login = True
+    elif ma_tc.startswith('CART'):
+        is_cart = True
+    elif ma_tc.startswith('VIEWP'):
+        is_product = True
+    elif ma_tc.startswith('ACC'):
+        is_account = True
     
-    # Priority 1: Prefix in Mã TC
-    is_reg = ma_tc.startswith('REG')
-    is_login = ma_tc.startswith('LOG')
-    is_cart = ma_tc.startswith('CART')
-    
-    # Priority 2: Keywords in Name (Strong indicators)
-    if not is_reg and not is_login and not is_cart:
+    # Priority 2: Keywords in Name (If no prefix matched)
+    if not (is_reg or is_login or is_cart or is_product or is_account):
         if 'đăng ký' in name or 'register' in name:
             is_reg = True
         elif 'đăng nhập' in name or 'login' in name:
             is_login = True
         elif 'giỏ hàng' in name or 'cart' in name:
             is_cart = True
+        elif ('chi tiết' in name and 'khách hàng' not in name) or 'sản phẩm' in name or 'product' in name:
+            is_product = True
+        elif 'tài khoản' in name or 'account' in name or 'hồ sơ' in name:
+            is_account = True
             
-    # Priority 3: Keywords in Full Text (Fallback)
-    if not is_reg and not is_login and not is_cart:
+    # Priority 3: Fallback Keywords (If still no match)
+    if not (is_reg or is_login or is_cart or is_product or is_account):
         if any(k in full_text for k in ['họ và tên', 'địa chỉ', 'ngày sinh', 'số điện thoại']):
-            is_reg = True
+            # For account management cases, prioritize account over registration if 'tài khoản' is mentioned
+            if 'tài khoản' in full_text or 'account' in full_text:
+                is_account = True
+            else:
+                is_reg = True
         elif any(k in full_text for k in ['tên đăng nhập', 'mật khẩu', 'username', 'password']):
             is_login = True
         elif 'giỏ hàng' in name or 'cart' in name:
             is_cart = True
 
     if is_reg:
-        # Check if this is a UI/Button check case (no data needed)
-        is_ui_check = any(k in full_text for k in ["nút", "button", "hiển thị", "giao diện", "interface", "layout"])
-        # Avoid "đăng nhập" triggering the "nhập" input keyword
+        # --- REG_12: UI check (nút "Đăng nhập ngay") → không cần data ---
+        is_ui_check = any(k in full_text for k in ["nút", "button", "đăng nhập ngay"])
         has_input_action = any(k in full_text for k in ["nhập ", " điền", " chọn", "nhập liệu"])
-        
         if is_ui_check and not has_input_action:
             return {"du_lieu_test_ai": {}}
 
-        # Check if this is the "Golden" (Valid Full Info) case or an "Already Exists" case
-        is_golden = "đầy đủ thông tin hợp lệ" in full_text
-        is_exists = any(k in full_text for k in ["đã tồn tại", "da ton tai", "already exists"])
+        # Mọi case đăng ký đều bắt đầu từ BASELINE đầy đủ 8 trường
+        data_fields = BASELINE_REG.copy()
 
-        # Start with RANDOM values for everyone to avoid unintended clashes
-        data_fields = {
-            "tên đăng nhập": "MockUser54265",
-            "mật khẩu": "MockPass123"
-        }
+        # --- REG_04: Để trống Tên đăng nhập ---
+        if "để trống tên đăng nhập" in full_text:
+            data_fields["tên đăng nhập"] = ""
 
-        if is_golden:
-            # GOLDEN case uses full baseline
-            data_fields = BASELINE_REG.copy()
-        elif is_exists:
-            # ONLY override the specific field mentioned as existing
-            if any(k in full_text for k in ["tên đăng nhập", "username", "tk"]):
-                data_fields["tên đăng nhập"] = BASELINE_REG["tên đăng nhập"]
-            if "email" in full_text:
-                data_fields["email"] = BASELINE_REG["email"]
-            if any(k in full_text for k in ["sđt", "số điện thoại", "điện thoại"]):
-                data_fields["số điện thoại"] = BASELINE_REG["số điện thoại"]
+        # --- REG_05: Để trống Mật khẩu ---
+        if "để trống mật khẩu" in full_text:
+            data_fields["mật khẩu"] = ""
 
+        # --- REG_06: Để trống Họ và tên ---
+        if "để trống họ và tên" in full_text:
+            data_fields["họ và tên"] = ""
 
-        # 1a. Logic for empty/blank fields
-        if any(k in full_text for k in ["rỗng", "trống", "empty", "blank", "không nhập", "bỏ trống"]):
-            if any(k in full_text for k in ["tên đăng nhập", "username"]): data_fields["tên đăng nhập"] = ""
-            if any(k in full_text for k in ["mật khẩu", "password", "mat_khau"]): data_fields["mật khẩu"] = ""
+        # --- REG_07: Để trống Email ---
+        if "để trống email" in full_text:
+            data_fields["email"] = ""
 
-        # 1c. Logic for invalid format
-        if "sai định dạng" in full_text or "không hợp lệ" in full_text or "sai" in full_text:
-            if any(k in full_text for k in ["mật khẩu", "password"]): data_fields["mật khẩu"] = "123"
-            if any(k in full_text for k in ["tên đăng nhập", "username"]): data_fields["tên đăng nhập"] = "!"
+        # --- REG_08: Email sai định dạng ---
+        if "email sai định dạng" in full_text:
+            data_fields["email"] = "invalid-email@@"
+
+        # --- REG_09: SĐT sai định dạng ---
+        if "sđt sai định dạng" in full_text:
+            data_fields["số điện thoại"] = "abc123"
+
+        # --- REG_10: Ngày sinh không hợp lệ ---
+        if "ngày sinh không hợp lệ" in full_text:
+            data_fields["ngày sinh"] = "2099-12-31"
+
+        # --- REG_11: Không chọn Giới tính ---
+        if "không chọn giới tính" in full_text:
+            data_fields["giới tính"] = ""
+
+        # --- REG_13: Ký tự đặc biệt trong Họ tên, Địa chỉ ---
+        if "ký tự đặc biệt" in full_text:
+            data_fields["họ và tên"] = "Nguyễn @#$% Văn"
+            data_fields["địa chỉ"] = "123 !@#$ Đường Test"
+
+        # --- REG_14: Độ dài tối thiểu ---
+        if "độ dài tối thiểu" in full_text:
+            data_fields["tên đăng nhập"] = "A"
+            data_fields["mật khẩu"] = "1"
+            data_fields["họ và tên"] = "A"
+
+        # --- REG_15: Độ dài tối đa ---
+        if "độ dài tối đa" in full_text:
+            data_fields["tên đăng nhập"] = "A" * 255
+            data_fields["mật khẩu"] = "P" * 128
+            data_fields["họ và tên"] = "Nguyễn " + "A" * 200
+
+        # REG_01 (đầy đủ hợp lệ), REG_02 (TĐN đã tồn tại), REG_03 (Email đã tồn tại)
+        # → giữ nguyên BASELINE_REG, không cần sửa gì thêm
 
         return {"du_lieu_test_ai": data_fields}
 
@@ -160,7 +202,7 @@ def _mock_ai_call(testcase_data: Dict[str, Any]) -> Dict[str, Any]:
 
 
     # 2. Login Module
-    if is_login:
+    elif is_login:
         login_data = {
             "tên đăng nhập": "thanhtung",
             "mật khẩu": "abc123"
@@ -224,7 +266,7 @@ def _mock_ai_call(testcase_data: Dict[str, Any]) -> Dict[str, Any]:
         return {"du_lieu_test_ai": login_data}
 
     # 3. Other modules
-    if 'tìm kiếm' in name or 'search' in name:
+    elif 'tìm kiếm' in name or 'search' in name:
         if any(k in full_text for k in ['danh mục', 'danh muc', 'category']):
             return {
                 "du_lieu_test_ai": {
@@ -251,27 +293,85 @@ def _mock_ai_call(testcase_data: Dict[str, Any]) -> Dict[str, Any]:
     elif is_cart:
         cart_data = {
             "ma_san_pham": "Gigabyte AORUS 17H",
+            "tên sản phẩm": "Gigabyte AORUS 17H"
         }
-        # Theo yêu cầu: chỉ cần mã sản phẩm, không cần thêm gì khác
+        
+        # Cart_006: Thêm nhiều lần
+        if "nhiều lần" in full_text or "nhiều sản phẩm" in full_text:
+            cart_data["số lượng"] = 3
+            
+        # Cart_005: Giảm số lượng xuống 1
+        if "xuống 1" in full_text:
+            cart_data["số lượng mục tiêu"] = 1
+
         return {"du_lieu_test_ai": cart_data}
-    elif 'chi tiết' in name or 'sản phẩm' in name or 'product' in name:
+    # 4. Product Detail module (ViewP)
+    elif is_product:
+        # ViewP_002: Không kết nối CSDL → không cần data sản phẩm
+        if 'không kết nối' in full_text or 'mất kết nối' in full_text or 'csdl' in full_text or 'database' in full_text:
+            return {"du_lieu_test_ai": {}}
+
+        # ViewP_004: Sản phẩm không tồn tại → tên sai
+        if 'không tồn tại' in full_text:
+            return {
+                "du_lieu_test_ai": {
+                    "tên sản phẩm": "abc"
+                }
+            }
+
+        # ViewP_001, ViewP_003: Xem chi tiết thành công → tên đúng
         return {
             "du_lieu_test_ai": {
-                "số lượng": 2
+                "tên sản phẩm": "Gigabyte AORUS 17H"
             }
         }
-    elif any(k in name for k in ['tài khoản', 'chỉnh sửa', 'account', 'họ tên', 'email', 'sđt', 'số điện thoại', 'ngày sinh', 'giới tính', 'mật khẩu']):
-        return {
-            "du_lieu_test_ai": {
-                "họ tên": "Mock Account Tên",
-                "email": "mock_account@example.com",
-                "địa chỉ": "Mock Địa Chỉ Account",
-                "số điện thoại": "0987654321",
-                "ngày sinh": "01/01/1990",
-                "giới tính": "Nam",
-                "mật khẩu mới": "MockNewPass123"
-            }
-        }
+    # 5. Account Management module (ACC)
+    elif is_account:
+        # ACC_01, ACC_02, ACC_03, ACC_04: UI check / Navigation / Display Check → no data needed
+        # Theo yêu cầu: "xem chi tiết", "Kiểm tra dữ liệu hiển thị đúng", "Click nút Chỉnh sửa" không cần sinh data
+        is_no_data_case = any(k in full_text for k in [
+            "nút chỉnh sửa", 
+            "quay lại trang chủ", 
+            "điều hướng",
+            "xem chi tiết",
+            "màn hình chi tiết",
+            "hiển thị đúng",
+            "kiểm tra dữ liệu"
+        ])
+        has_input_action = any(k in full_text for k in ["nhập", "điền", "cập nhật", "thay đổi", "chỉnh sửa họ tên", "chỉnh sửa email", "chỉnh sửa số điện thoại"])
+        
+        if is_no_data_case and not has_input_action:
+            return {"du_lieu_test_ai": {}}
+
+        # Mọi case tài khoản (nếu cần data)
+        # Theo yêu cầu mới: Chỉnh sửa trường nào thì CHỈ sinh data trường đó
+        data_fields = {}
+
+        # 1. Xử lý Họ tên
+        if "họ tên" in full_text:
+            data_fields["họ và tên"] = "Nguyễn Văn Mới"
+            
+        # 2. Xử lý Email
+        if "email" in full_text:
+            if "sai định dạng" in full_text:
+                data_fields["email"] = "invalid-email@@"
+            else:
+                data_fields["email"] = "new.email@example.com"
+                
+        # 3. Xử lý Số điện thoại
+        if "số điện thoại" in full_text or "sđt" in full_text:
+            if "không hợp lệ" in full_text or "sai" in full_text:
+                data_fields["số điện thoại"] = "abc123456"
+            else:
+                data_fields["số điện thoại"] = "0999888777"
+
+        # Nếu không bắt được trường cụ thể nào thì mới dùng baseline (fallback)
+        if not data_fields:
+            data_fields = BASELINE_REG.copy()
+            data_fields.pop("tên đăng nhập", None)
+            data_fields.pop("mật khẩu", None)
+
+        return {"du_lieu_test_ai": data_fields}
     else:
         return {
             "du_lieu_test_ai": {

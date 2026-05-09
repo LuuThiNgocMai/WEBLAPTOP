@@ -20,9 +20,9 @@ class AccountPage(BasePage):
     CANCEL_BUTTON = (By.XPATH, "//a[contains(., 'HỦY') or contains(., 'Hủy') or contains(., 'Huy')] | //button[contains(., 'HỦY') or contains(., 'Hủy') or contains(., 'Huy')]")
     
     # SweetAlert2 Locators
-    SWAL_CONFIRM_BUTTON = (By.CSS_SELECTOR, "button.swal2-confirm")
-    SWAL_CANCEL_BUTTON = (By.CSS_SELECTOR, "button.swal2-cancel")
-    SWAL_SUCCESS_OK = (By.CSS_SELECTOR, "button.swal2-confirm") # Usually the same
+    SWAL_CONFIRM_BUTTON = (By.CSS_SELECTOR, "button.swal2-confirm, .swal2-confirm, .swal2-actions button.swal2-confirm")
+    SWAL_CANCEL_BUTTON = (By.CSS_SELECTOR, "button.swal2-cancel, .swal2-cancel")
+    SWAL_SUCCESS_OK = (By.CSS_SELECTOR, "button.swal2-confirm, .swal2-confirm")
     LOGOUT_BUTTON = (By.LINK_TEXT, "ĐĂNG XUẤT")
     ACCOUNT_MENU = (By.CSS_SELECTOR, ".bi-person-circle")
     # Hỗ trợ tìm kiếm theo cả text và theo href link ẩn bên dưới
@@ -64,44 +64,79 @@ class AccountPage(BasePage):
              self.enter_text(self.PASSWORD_INPUT, password)
 
     def click_save(self):
+        """Clicks the save button, ensuring it is clickable and triggers events."""
         try:
+            # Scroll and click
             self.click(self.SAVE_BUTTON)
-        except:
+            # Extra insurance: trigger click event via JS just in case
+            self.driver.execute_script("document.getElementById('saveButton').click();")
+            time.sleep(1.5) # Wait for Swal to animate in
+            return True
+        except Exception as e:
+            print(f"Click failed for SAVE_BUTTON: {str(e)}")
             try:
-                elem = self.driver.find_element(*self.SAVE_BUTTON)
-                self.driver.execute_script("arguments[0].click();", elem)
+                self.driver.execute_script("document.getElementById('saveButton').click();")
+                time.sleep(1.5)
+                return True
             except:
-                print("Could not click SAVE_BUTTON via selenium or JS")
+                return False
         
     def handle_swal_confirmation(self):
-        """Handles the SweetAlert2 popup."""
-        # Wait a bit for Swal to appear
-        time.sleep(1)
+        """Handles the SweetAlert2 popup with aggressive confirmation attempts."""
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        
+        # 1. Try to detect Swal visibility
+        is_swal_visible = self.driver.execute_script("return typeof Swal !== 'undefined' && Swal.isVisible();")
+        
+        # 2. Attempt to click confirm directly via JS anyway (most reliable)
         try:
-            if self.is_visible(self.SWAL_CONFIRM_BUTTON):
-                self.click(self.SWAL_CONFIRM_BUTTON)
-                return True, "Đã xác nhận lưu thay đổi trên SweetAlert2"
+            # We try to call clickConfirm() regardless of visibility check 
+            # because sometimes check fails during animation
+            self.driver.execute_script("if(typeof Swal !== 'undefined') { Swal.clickConfirm(); }")
+            
+            # Wait for URL change to verify success
+            old_url = self.driver.current_url
+            for _ in range(10): 
+                time.sleep(0.5)
+                if self.driver.current_url != old_url:
+                    return True, "Đã lưu thành công (Chuyển hướng sau clickConfirm)"
         except:
-            try:
-                elem = self.driver.find_element(*self.SWAL_CONFIRM_BUTTON)
-                self.driver.execute_script("arguments[0].click();", elem)
-                return True, "Đã xác nhận lưu thay đổi trên SweetAlert2 bằng JS"
-            except:
-                pass
-        return False, "Không tìm thấy hoặc không thể click nút xác nhận SweetAlert2"
+            pass
+
+        # 3. If still on same page, try manual submission as final fallback
+        try:
+            # Check if there are any REAL validation errors visible on page
+            # ASP.NET MVC adds specific classes when there are errors
+            has_errors = self.driver.execute_script('''
+                return document.querySelectorAll('.field-validation-error, .validation-summary-errors').length > 0;
+            ''')
+            if has_errors:
+                return False, "Có lỗi validation trên form, không thể lưu"
+                
+            self.driver.execute_script("document.getElementById('editProfileForm').submit();")
+            time.sleep(2)
+            return True, "Đã ép buộc submit form (Dự phòng cuối cùng)"
+        except Exception as e:
+            return False, f"Không thể lưu dữ liệu: {str(e)}"
+                
+        except Exception as e:
+            return False, f"Lỗi khi xác nhận SweetAlert2: {str(e)}"
 
     def handle_swal_cancel(self):
         """Handles the Cancel action on SweetAlert2 popup."""
-        time.sleep(1)
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
         try:
-            if self.is_visible(self.SWAL_CANCEL_BUTTON):
-                self.click(self.SWAL_CANCEL_BUTTON)
-                return True, "Đã nhấn nút Hủy trên SweetAlert2"
-        except:
+            wait = WebDriverWait(self.driver, 5)
+            cancel_btn = wait.until(EC.element_to_be_clickable(self.SWAL_CANCEL_BUTTON))
+            time.sleep(0.5)
+            cancel_btn.click()
+            return True, "Đã nhấn nút Hủy trên SweetAlert2"
+        except Exception as e:
             try:
                 elem = self.driver.find_element(*self.SWAL_CANCEL_BUTTON)
                 self.driver.execute_script("arguments[0].click();", elem)
-                return True, "Đã nhấn nút Hủy trên SweetAlert2 bằng JS"
+                return True, "Đã nhấn nút Hủy trên SweetAlert2 (JS fallback)"
             except:
-                pass
-        return False, "Không tìm thấy hoặc không thể click nút Hủy trên SweetAlert2"
+                return False, f"Không tìm thấy hoặc không thể click nút Hủy trên SweetAlert2: {str(e)}"

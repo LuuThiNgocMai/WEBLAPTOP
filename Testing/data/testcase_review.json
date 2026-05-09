@@ -1,27 +1,307 @@
 [
   {
-    "stt": 6,
-    "ma_tc": "Cart_008",
-    "ten_test_case": "Giảm số lượng sản phẩm xuống 1",
-    "mo_ta": "Kiểm tra hành vi khi giảm số lượng về 1",
-    "dieu_kien_tien_quyet": "Khách hàng đã đăng nhập và giỏ hàng có sản phẩm",
-    "cac_buoc_thuc_hien_goc": "1. Vào giỏ hàng \n2. Click nút “-” liên tục cho đến khi số lượng = 1",
+    "stt": 1,
+    "ma_tc": "TC_01",
+    "ten_test_case": "Đăng nhập thành công bằng tài khoản hợp lệ",
+    "mo_ta": "Kiểm tra đăng nhập thành công khi nhập đúng tên đăng nhập + mật khẩu",
+    "dieu_kien_tien_quyet": "Người dùng đã có tài khoản hợp lệ",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Tên đăng nhập và Mật khẩu \n3. Click nút ĐĂNG NHẬP",
     "danh_sach_buoc": [
       {
         "so_buoc": 1,
-        "noi_dung": "Vào giỏ hàng"
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
       },
       {
         "so_buoc": 2,
-        "noi_dung": "Click nút “-” liên tục cho đến khi số lượng = 1"
+        "noi_dung": "Nhập Tên đăng nhập và Mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
       }
     ],
     "du_lieu_test_goc": "",
-    "ket_qua_mong_doi": "Sản phẩm tự động bị xóa khỏi giỏ hàng",
-    "ghi_chu_tu_dong_hoa": "Test case biên",
+    "ket_qua_mong_doi": "Chuyển hướng đến trang chủ / dashboard. Không hiển thị lỗi.",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra URL sau login",
     "buoc_chi_tiet_ai": [],
     "du_lieu_test_ai": {
-      "ma_san_pham": "Gigabyte AORUS 17H"
+      "tên đăng nhập": "thanhtung",
+      "mật khẩu": "abc123"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 2,
+    "ma_tc": "TC_02",
+    "ten_test_case": "Đăng nhập thất bại - Tên đăng nhập không tồn tại",
+    "mo_ta": "Kiểm tra thông báo lỗi khi tên đăng nhập sai",
+    "dieu_kien_tien_quyet": "Có kết nối mạng",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Tên đăng nhập và Mật khẩu \n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Tên đăng nhập và Mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Hiển thị thông báo: “Tài khoản hoặc mật khẩu không chính xác”",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra message element",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "user_khong_ton_tai",
+      "mật khẩu": "abc123"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 3,
+    "ma_tc": "TC_03",
+    "ten_test_case": "Đăng nhập thất bại - Mật khẩu không đúng",
+    "mo_ta": "Kiểm tra thông báo lỗi khi mật khẩu sai",
+    "dieu_kien_tien_quyet": "Có tài khoản hợp lệ",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Tên đăng nhập và Mật khẩu \n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Tên đăng nhập và Mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Hiển thị thông báo: “Tài khoản hoặc mật khẩu không chính xác”",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra message element",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "wrong_user",
+      "mật khẩu": "WrongPass123"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 4,
+    "ma_tc": "TC_04",
+    "ten_test_case": "Đăng nhập thất bại - Để trống Tên đăng nhập",
+    "mo_ta": "Kiểm tra validation khi không nhập tên đăng nhập",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập mật khẩu\n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Hiển thị lỗi: “Vui lòng nhập tên đăng nhập” + nút ĐĂNG NHẬP vẫn active",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra required field",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "",
+      "mật khẩu": "abc123"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 5,
+    "ma_tc": "TC_05",
+    "ten_test_case": "Đăng nhập thất bại - Để trống Mật khẩu",
+    "mo_ta": "Kiểm tra validation khi không nhập mật khẩu",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập tên đăng nhập\n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập tên đăng nhập"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Hiển thị lỗi: “Vui lòng nhập mật khẩu” + nút ĐĂNG NHẬP vẫn active",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra required field",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "thanhtung",
+      "mật khẩu": ""
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 6,
+    "ma_tc": "TC_06",
+    "ten_test_case": "Đăng nhập thất bại - Để trống cả hai trường",
+    "mo_ta": "Kiểm tra validation khi không nhập gì",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Hiển thị lỗi cho cả 2 trường",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra cả 2 required message",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "",
+      "mật khẩu": ""
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 7,
+    "ma_tc": "TC_07",
+    "ten_test_case": "Kiểm tra đăng nhập với tên đăng nhập chứa ký tự đặc biệt",
+    "mo_ta": "Kiểm tra xử lý ký tự đặc biệt",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Tên đăng nhập và mật khẩu \n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Tên đăng nhập và mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Đăng nhập thành công hoặc báo lỗi phù hợp (tùy quy tắc hệ thống)",
+    "ghi_chu_tu_dong_hoa": "Kiểm tra input validation",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "Admin@#!123",
+      "mật khẩu": "abc123"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 8,
+    "ma_tc": "TC_08",
+    "ten_test_case": "Kiểm tra giới hạn độ dài Tên đăng nhập (255 ký tự)",
+    "mo_ta": "Kiểm tra boundary length",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Nhập Tên đăng nhập và mật khẩu\n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Nhập Tên đăng nhập và mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Đăng nhập thành công hoặc báo lỗi “Tên đăng nhập quá dài”",
+    "ghi_chu_tu_dong_hoa": "Dùng data generator",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "mật khẩu": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 9,
+    "ma_tc": "TC_09",
+    "ten_test_case": "Kiểm tra giới hạn độ dài Mật khẩu (128 ký tự)",
+    "mo_ta": "Kiểm tra boundary length",
+    "dieu_kien_tien_quyet": "-",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Nhập Tên đăng nhập và mật khẩu\n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Nhập Tên đăng nhập và mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Đăng nhập thành công hoặc báo lỗi “Mật khẩu quá dài”",
+    "ghi_chu_tu_dong_hoa": "Dùng data generator",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "mật khẩu": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+    },
+    "trang_thai_review": "NEW"
+  },
+  {
+    "stt": 10,
+    "ma_tc": "TC_10",
+    "ten_test_case": "Kiểm tra tính nhạy cảm chữ hoa/thường",
+    "mo_ta": "Kiểm tra case-sensitive",
+    "dieu_kien_tien_quyet": "",
+    "cac_buoc_thuc_hien_goc": "1. Click vào biểu tượng avatar tài khoản\n2. Nhập Tên đăng nhập và mật khẩu\n3. Click nút ĐĂNG NHẬP",
+    "danh_sach_buoc": [
+      {
+        "so_buoc": 1,
+        "noi_dung": "Click vào biểu tượng avatar tài khoản"
+      },
+      {
+        "so_buoc": 2,
+        "noi_dung": "Nhập Tên đăng nhập và mật khẩu"
+      },
+      {
+        "so_buoc": 3,
+        "noi_dung": "Click nút ĐĂNG NHẬP"
+      }
+    ],
+    "du_lieu_test_goc": "",
+    "ket_qua_mong_doi": "Đăng nhập thất bại + hiển thị thông báo lỗi",
+    "ghi_chu_tu_dong_hoa": "Quan trọng cho security test",
+    "buoc_chi_tiet_ai": [],
+    "du_lieu_test_ai": {
+      "tên đăng nhập": "THANHTUNG",
+      "mật khẩu": "ABC123"
     },
     "trang_thai_review": "NEW"
   }

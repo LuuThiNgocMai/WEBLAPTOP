@@ -171,6 +171,8 @@ def main():
             for key in list(st.session_state.keys()):
                 del st.session_state[key]
             st.session_state.uploader_key = new_key
+            # Đảm bảo ai_progress được khởi tạo lại sạch
+            st.session_state.ai_progress = {"index": 0, "processed": [], "is_running": False, "engine": "Google Gemini"}
             
             st.success("Đã reset toàn bộ dữ liệu thành công!")
             time.sleep(1)
@@ -246,7 +248,8 @@ def main():
             # --- Dialog for Fallback ---
             @st.dialog("Phát hiện sự cố AI")
             def confirm_fallback():
-                st.write("Đã có sự cố xảy ra với Google Gemini. Bạn có muốn chuyển sang **Mock AI** để tiếp tục hoàn thành các test case còn lại không?")
+                current_engine = st.session_state.ai_progress.get("engine", "AI")
+                st.write(f"Đã có sự cố xảy ra với **{current_engine}**. Bạn có muốn chuyển sang **Mock AI** (Công cụ giả lập) để tiếp tục hoàn thành các test case còn lại không?")
                 c1, c2 = st.columns(2)
                 if c1.button("Sử dụng Mock AI", use_container_width=True):
                     st.session_state.ai_progress["engine"] = "Mock AI"
@@ -273,6 +276,9 @@ def main():
             # --- Running Logic ---
             if st.session_state.ai_progress["is_running"]:
                 current_engine = st.session_state.ai_progress["engine"]
+                # Nếu bắt đầu từ đầu (index=0), xóa sạch dữ liệu cũ
+                if st.session_state.ai_progress["index"] == 0:
+                    st.session_state.ai_progress["processed"] = []
                 with st.spinner(f"Đang xử lý bằng {current_engine}... (TC {st.session_state.ai_progress['index']+1}/{len(norm_data)})"):
                     for i in range(st.session_state.ai_progress["index"], len(norm_data)):
                         tc = norm_data[i]
@@ -343,7 +349,21 @@ def main():
             with c_env2:
                 st.subheader("Hàng chờ Test Case")
                 tc_options = [f"{t['ma_tc']} - {t['ten_test_case']}" for t in rev_data]
-                to_run = st.multiselect("Chọn TC để chạy:", tc_options, default=tc_options)
+                
+                # Tạo HTML cho các tag đỏ giống hệt multiselect
+                tags_html = "".join([f'<span style="background-color: #ff4b4b; color: white; padding: 4px 10px; border-radius: 4px; margin: 4px; display: inline-block; font-size: 14px;">{t}</span>' for t in tc_options])
+                
+                # Hiển thị ô chứa danh sách có thanh cuộn (scroll)
+                st.markdown(f"""
+                <div style="margin-bottom: 15px;">
+                    <label style="font-size: 14px; font-weight: 500; color: #31333F; margin-bottom: 8px; display: block;">Danh sách Testcase sẽ chạy:</label>
+                    <div style="background-color: #f0f2f6; padding: 10px; border-radius: 8px; max-height: 150px; overflow-y: auto; display: flex; flex-wrap: wrap;">
+                        {tags_html}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                to_run = tc_options
                 show_browser = st.checkbox("Quan sát quá trình chạy (Mở trình duyệt)", value=True)
                 headless = not show_browser
                 keep_open = st.checkbox("Giữ trình duyệt mở sau khi chạy", value=False)
@@ -436,7 +456,7 @@ def main():
             # Metrics
             met1, met2, met3 = st.columns(3)
             met1.metric("Tổng lần chạy", len(df_rep))
-            pass_count = len(df_rep[df_rep['Trạng thái'] == 'PASSED'])
+            pass_count = len(df_rep[df_rep['Trạng thái'] == 'THÀNH CÔNG'])
             met2.metric("Tỷ lệ thành công", f"{(pass_count/len(df_rep)*100):.1f}%")
             met3.metric("Tổng số bước", int(df_rep['Tổng Bước'].sum()))
 
@@ -455,6 +475,17 @@ def main():
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
                     df_rep.to_excel(writer, index=False, sheet_name='Tổng hợp')
                 st.download_button("Tải Báo cáo Excel", output.getvalue(), "report.xlsx", "application/vnd.ms-excel")
+            
+            st.markdown("---")
+            if st.button(" Xóa toàn bộ Lịch sử thực thi", type="secondary", use_container_width=True):
+                if GLOBAL_REPORT_CSV.exists():
+                    try:
+                        GLOBAL_REPORT_CSV.unlink()
+                        st.success("Đã xóa dữ liệu lịch sử thành công!")
+                        time.sleep(1)
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Không thể xóa tệp: {e}")
 
 if __name__ == "__main__":
     main()

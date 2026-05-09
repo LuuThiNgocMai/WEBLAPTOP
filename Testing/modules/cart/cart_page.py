@@ -16,7 +16,14 @@ class CartPage(BasePage):
     TOTAL_PRICE = (By.CSS_SELECTOR, ".final-price, #total-amount")
     CHECKOUT_BUTTON = (By.CSS_SELECTOR, ".btn-dat-hang, .btn-checkout, button[type='submit']")
     CART_EMPTY_MESSAGE = (By.CSS_SELECTOR, ".empty-cart-message")
-    ADD_TO_CART_BUTTON_LIST = (By.CSS_SELECTOR, ".btn-add-to-cart")
+    ADD_TO_CART_BUTTON_LIST = (By.CSS_SELECTOR, 
+        ".btn-add-to-cart, "
+        "button[onclick*='AddToCart'], "
+        "a[onclick*='AddToCart'], "
+        "form[action*='AddToCart'] button, "
+        "a[href*='AddToCart'], "
+        ".bi-cart-plus"
+    )
 
     def click_add_to_cart_first_item(self):
         # Adds the first item found on the page (usually home or search results)

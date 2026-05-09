@@ -18,19 +18,13 @@ class AccountHandler:
             
         elif "chon_luu" in action_name or "xac_nhan" in action_name:
             success, msg = self.page.handle_swal_confirmation()
-            if not success:
-                # Nếu không thấy popup thì coi như đã xử lý trước đó hoặc không cần
-                return True, "Đã bỏ qua hoặc xử lý xong popup Lưu"
             return success, msg
             
-        elif "luu_thay_doi" in action_name or "click_luu" in action_name or "bam_luu" in action_name:
-            self.page.click_save()
-            return True, "Đã click nút LƯU THAY ĐỔI"
-            
-        elif "luu" in action_name.split("_"):
-            self.page.click_save()
-            success, msg = self.page.handle_swal_confirmation()
-            return True, "Đã nhấn lưu và xử lý popup (nếu có)"
+        elif "luu" in action_name.split("_") or "luu_thay_doi" in action_name or "click_luu" in action_name or "bam_luu" in action_name:
+            if self.page.click_save():
+                return True, "Đã click nút LƯU THAY ĐỔI"
+            else:
+                return False, "Không thể click nút LƯU THAY ĐỔI"
             
         elif "chinh_sua" in action_name or "sua" in action_name.split("_"):
             try:

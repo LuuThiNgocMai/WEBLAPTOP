@@ -8,9 +8,30 @@ class ProductPage(BasePage):
     FIRST_PRODUCT_LINK = (By.CSS_SELECTOR, ".card")
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".fs-4.fw-semibold")
     PRODUCT_PRICE = (By.CSS_SELECTOR, ".fs-3.fw-bold.text-warning")
-    ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".col-md-3 button[onclick*='AddToCart'], .col-md-3 .bi-cart, .product-details .btn-add-to-cart, .purchase-box .bi-cart")
-    # Dự phòng bằng XPATH cực kỳ linh hoạt để tìm bất kỳ phần tử nào có liên quan đến giỏ hàng HOẶC nằm cạnh nút MUA NGAY (Ưu tiên nút trong col-md-3)
-    ADD_TO_CART_XPATH = (By.XPATH, "//div[contains(@class, 'col-md-3')]//button[contains(@onclick, 'AddToCart')] | //div[contains(@class, 'col-md-3')]//i[contains(@class, 'bi-cart')] | //div[contains(translate(text(), 'MUA NGAY', 'mua ngay'), 'mua ngay')]/following-sibling::button | //div[contains(translate(text(), 'MUA NGAY', 'mua ngay'), 'mua ngay')]/parent::div/following-sibling::div//i[contains(@class, 'cart')]")
+    ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, 
+        "button[onclick*='AddToCart'], "
+        "a[onclick*='AddToCart'], "
+        "input[onclick*='AddToCart'], "
+        ".btn-add-to-cart, "
+        "form[action*='AddToCart'] button, "
+        "form[action*='AddToCart'] input[type='submit'], "
+        "a[href*='AddToCart'], "
+        ".bi-cart-plus, "
+        "button .bi-cart"
+    )
+    ADD_TO_CART_XPATH = (By.XPATH, 
+        "//button[contains(@onclick, 'AddToCart')] "
+        "| //a[contains(@onclick, 'AddToCart')] "
+        "| //input[contains(@onclick, 'AddToCart')] "
+        "| //form[contains(@action, 'AddToCart')]//button "
+        "| //form[contains(@action, 'AddToCart')]//input[@type='submit'] "
+        "| //a[contains(@href, 'AddToCart')] "
+        "| //button[contains(text(), 'Thêm vào giỏ')] "
+        "| //a[contains(text(), 'Thêm vào giỏ')] "
+        "| //i[contains(@class, 'bi-cart-plus')]/parent::* "
+        "| //i[contains(@class, 'bi-cart')]/parent::button "
+        "| //i[contains(@class, 'bi-cart')]/parent::a"
+    )
     PRODUCT_MENU_LINK = (By.XPATH, "//a[contains(text(), 'Sản phẩm')]")
 
     def click_product_menu(self):
@@ -20,7 +41,12 @@ class ProductPage(BasePage):
         try:
             self.click(self.ADD_TO_CART_BUTTON)
         except:
-            self.click(self.ADD_TO_CART_XPATH)
+            try:
+                self.click(self.ADD_TO_CART_XPATH)
+            except:
+                # Fallback cuối: tìm bất kỳ element nào có chứa 'cart' trong class và click
+                fallback = (By.XPATH, "//*[contains(@class, 'cart') and (self::button or self::a or self::i)][1]")
+                self.click(fallback)
 
     def click_first_product(self):
         self.click(self.FIRST_PRODUCT_LINK)
@@ -34,12 +60,12 @@ class ProductPage(BasePage):
     def click_product_by_name(self, product_name):
         if not product_name:
             return self.click_first_product()
-        # Tìm card chứa tên sản phẩm
-        locator = (By.XPATH, f"//div[contains(@class, 'card')]//h5[contains(text(), '{product_name}')]/ancestor::div[contains(@class, 'card')]")
+        # Tìm card chứa tên sản phẩm (có thể nằm trong h5 hoặc h6)
+        locator = (By.XPATH, f"//div[contains(@class, 'card')]//*[self::h5 or self::h6][contains(text(), '{product_name}')]/ancestor::div[contains(@class, 'card')]")
         if self.is_visible(locator):
             self.click(locator)
         else:
-            # Fallback nếu không tìm thấy chính xác card qua text trong h5
+            # Fallback nếu không tìm thấy chính xác card
             locator_simple = (By.XPATH, f"//*[contains(text(), '{product_name}')]")
             self.click(locator_simple)
             

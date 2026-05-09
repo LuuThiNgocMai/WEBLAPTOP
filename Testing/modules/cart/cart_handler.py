@@ -11,10 +11,40 @@ class CartHandler:
         action_name = action_name.lower()
         
         if "them_vao_gio_hang" in action_name or "click_bieu_tuong_gio_hang" in action_name:
-            times = 3 if "nhieu_lan" in action_name else 1
+            so_luong = test_data_ai.get('số lượng', test_data_ai.get('so_luong'))
+            if so_luong:
+                try:
+                    times = int(so_luong)
+                except ValueError:
+                    times = 3 if "nhieu_lan" in action_name else 1
+            else:
+                times = 3 if "nhieu_lan" in action_name else 1
+                
+            p_name = test_data_ai.get('ma_san_pham', test_data_ai.get('tên sản phẩm', ''))
             original_url = self.page.driver.current_url
             
             for i in range(times):
+                if p_name:
+                    if i > 0 or (i == 0 and not "/Details" in self.page.driver.current_url and not "/Product" in self.page.driver.current_url):
+                        from config import BASE_URL
+                        if i > 0:
+                            self.page.driver.get(BASE_URL)
+                            time.sleep(0.5)
+                            
+                        from modules.search.search_page import SearchPage
+                        s_page = SearchPage(self.page.driver)
+                        s_page.enter_search_keyword(p_name)
+                        s_page.click_search()
+                        time.sleep(0.8)
+                        
+                        from modules.product.product_page import ProductPage
+                        p_page = ProductPage(self.page.driver)
+                        try:
+                            p_page.click_product_by_name(p_name)
+                            time.sleep(0.8)
+                        except Exception as e:
+                            self.page.logger.warning(f"Failed to click product '{p_name}' in search results: {e}")
+                
                 try:
                     # Thử selector của trang danh sách trước
                     self.page.click_add_to_cart_first_item()
@@ -27,17 +57,21 @@ class CartHandler:
                 # Sau mỗi lần nhấn, nếu bị redirect sang trang giỏ hàng thì quay lại trang sản phẩm để nhấn tiếp
                 if times > 1 and i < times - 1:
                     time.sleep(0.8) # Chờ hiệu ứng/redirect
-                    if "/Cart" in self.page.driver.current_url:
+                    if not p_name and "/Cart" in self.page.driver.current_url:
                         self.page.driver.get(original_url)
                         time.sleep(0.5)
             
             # --- Verification Step ---
-            time.sleep(0.5) # Chờ redirect/xử lý server
+            # Chờ trang xử lý AddToCart (redirect có thể mất 1-3s)
+            for _ in range(10):
+                if "/Cart" in self.page.driver.current_url:
+                    break
+                time.sleep(0.5)
             
-            # Nếu chưa ở trang giỏ hàng, hãy thử mở nó
+            # Nếu vẫn chưa ở trang giỏ hàng sau 5s, hãy thử mở nó
             if "/Cart" not in self.page.driver.current_url:
                 self.page.open_cart()
-                time.sleep(0.5)
+                time.sleep(1.0)
             
             # Kiểm tra xem có sản phẩm nào trong giỏ hàng không
             if self.page.is_visible(self.page.CART_EMPTY_MESSAGE, timeout=3):
